@@ -11,7 +11,8 @@ const assets = [
   "/assets/images/hello-icon-192.png",
   "/assets/images/hello-icon-256.png",
   "/assets/images/hello-icon-512.png",
-  "/assets/images/logo/logo.jpeg"
+  "/assets/images/logo/logo.jpeg",
+  "/assets/images/intro/intro-sm.jpg"
 ];
 
 self.addEventListener("install", installEvent => {
