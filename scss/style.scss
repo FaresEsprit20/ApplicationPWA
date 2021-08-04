@@ -227,6 +227,13 @@ body {
 
 }
 
+.products {
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
+
+
+}
+
 
 .contact {
   padding-top: $section-padding;
@@ -273,6 +280,7 @@ body {
 
 @media screen and (max-width: 450px) {
   
+
   .special-heading {
     color: #ebeced;
     font-size: 37px;

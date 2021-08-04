@@ -10771,6 +10771,32 @@ body {
   box-sizing: border-box;
 }
 
+.btn-close {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.btn-close:hover {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.btn-close:active {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.btn-close::selection {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.btn-close:focus {
+  border: none !important;
+  box-shadow: none o !important;
+  outline: none !important;
+}
+
 .special-heading {
   color: #ebeced;
   font-size: 6.25rem;
@@ -10903,6 +10929,11 @@ body {
   line-height: 1.8;
   color: #777;
   font-size: 1.0625rem;
+}
+
+.products {
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .contact {
