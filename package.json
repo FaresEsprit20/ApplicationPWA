@@ -9,6 +9,7 @@
   "author": "Fares Ben Slama",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.0.2"
+    "bootstrap": "^5.0.2",
+    "jquery": "^3.6.0"
   }
 }
