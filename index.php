@@ -12,4 +12,6 @@ $model = new ProductionModel();
 
 
 //calling view file
-require "views/indexView.php";
+
+require "components/home/views/indexView.php";
+
