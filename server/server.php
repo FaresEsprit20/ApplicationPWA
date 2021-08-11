@@ -1,25 +1,34 @@
 <?php
 
+
+
 // Connect to server
 
-
-       function getConnection() {
-
-        $conn = null;
-       
-        if (!is_null($conn)) {
-            return $conn;
+class Database{
+ 
+        // specify your own database credentials
+        private $host = "localhost";
+        private $db_name = "stage";
+        private $username = "root";
+        private $password = "";
+        public $conn;
+     
+        // get the database connection
+        public function getConnection(){
+     
+            $this->conn = null;
+     
+            try{
+                $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+                $this->conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+                http_response_code(200);
+            }catch(PDOException $exception){
+                echo "Connection error: " . $exception->getMessage();
+                http_response_code(500);
+            }
+     
+            return $this->conn;
         }
-        $conn = false;
-        try {
-            $conn = new PDO('mysql:host=localhost;dbname=stage', 'root', '');
-            $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        } catch(PDOException $e) { 
-            echo 'response_error';
-        }
-        return $conn;
     }
-
-
 
     

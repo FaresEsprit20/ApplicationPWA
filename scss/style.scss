@@ -238,9 +238,19 @@ body {
   padding-top: $section-padding;
   padding-bottom: $section-padding;
 
-
 }
 
+
+.stats {
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
+
+  & .stat {
+    margin-top: $section-padding;
+    margin-bottom: $section-padding;
+  }
+
+}
 
 .contact {
   padding-top: $section-padding;

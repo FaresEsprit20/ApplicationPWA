@@ -1,21 +1,24 @@
 <?php
 
-//calling server file
-require "server/server.php";
+ 
+// imports will be here
+require "ProductionByMonth.php";
+
 
 class ProductionModel {
 
     //atributes
-    public $id;
-    public $ligne;
-    public $produit;
-    public $date;
-    public $heure;
-    public $qte;
+    private $id;
+    private $ligne;
+    private $produit;
+    private $date;
+    private $heure;
+    private $qte;
+    private $conn;
 
     //constructor
-    public function __construct() {
-     
+    public function __construct($db) {
+       $this->conn = $db;
     }
 
     //getters and setters
@@ -82,22 +85,69 @@ class ProductionModel {
     
 
     public function getProductionAll() {
-      
-        $db = getConnection();
-      
-        $stmt = $db->prepare("SELECT * FROM production");
+
+        $stmt = $this->conn->prepare("SELECT * FROM production");
         $stmt->execute();
-    /* Récupération de toutes les lignes d'un jeu de résultats */
-    print("Récupération de toutes les lignes d'un jeu de résultats :\n");
-   
-    $result = $stmt->fetchAll(PDO::FETCH_CLASS,'ProductionModel');
-        print_r($result);
-        return json_encode($result);
-        
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($result) ;
+     
     }
 
+   public function getTodayProduction() {
+    $today =  date("Y-m-d");
+    $stmt = $this->conn->prepare("SELECT * FROM production where date = ? ");
+    $stmt->execute([$today]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($result) ;
+
+   }
+
+   public function getProductsStatsByType(){
+    $today =  date("Y-m-d");    
+    $stmt = $this->conn->prepare("SELECT sum(qte) as total,ligne, produit,date,heure FROM production where date = ? group by LOWER(ligne) ");
+    $stmt->execute([$today]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($result) ;
+   }
+    
+   public function getProductsStatsByMonths() {
+    $today =  date("Y-m-d"); 
+    $date_arr = explode("-", $today);  
+    $year = $date_arr[0];
+    $month = $date_arr[1];
+    $day = $date_arr[2];
+ 
+    $prods = array();
+    $months = array(
+    1 ,
+    2 ,
+    3 ,
+    4 ,
+    5 ,
+    6 ,
+    7 ,
+    8 ,
+    9 ,
+    10 ,
+    11 ,
+    12
+ );
+
+    foreach ($months as $month){
+        $stmt = $this->conn->prepare("SELECT sum(qte) as total,ligne, produit,date,heure,qte FROM production where YEAR(date) = ? and MONTH(date) = ? group by LOWER(ligne) ");
+        $stmt->execute([$year,$month]);
+
+        while( $row = $stmt->fetch(pdo::FETCH_ASSOC)){
+            array_push($prods, new ProductionByMonth(0,$row["ligne"],$row["produit"],$row["date"],$row["heure"],$row["qte"],$month,$year));
+        }
+    }
+
+  
+    echo json_encode($prods);
+   
 
 
+   }
 
 
 

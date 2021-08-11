@@ -13,7 +13,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                
-                <a class="nav-link active d-inline-block" aria-current="page" href="#landing">Accueil</a>
+                <a class="nav-link d-inline-block" aria-current="page" href="#landing">Accueil</a>
                 <i class="navbar-fa fa fa-home fa-2x  d-inline-block"></i>
               </li>
               <li class="nav-item">

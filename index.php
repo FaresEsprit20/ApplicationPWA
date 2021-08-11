@@ -1,14 +1,11 @@
 <?php
 
+// required headers
 
 
 //calling model file
 require("models/ProductionModel.php");
 
-
-//treatements ...
-
-$model = new ProductionModel();
 
 
 //calling view file
