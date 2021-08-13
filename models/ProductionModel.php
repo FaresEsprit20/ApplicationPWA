@@ -3,6 +3,7 @@
  
 // imports will be here
 require "ProductionByMonth.php";
+require "Months.php";
 
 
 class ProductionModel {
@@ -104,12 +105,14 @@ class ProductionModel {
 
    public function getProductsStatsByType(){
     $today =  date("Y-m-d");    
-    $stmt = $this->conn->prepare("SELECT sum(qte) as total,ligne, produit,date,heure FROM production where date = ? group by LOWER(ligne) ");
+    $stmt = $this->conn->prepare("SELECT SUM(qte) as total,ligne, produit,date,heure FROM production where date = ? group by LOWER(ligne) ");
     $stmt->execute([$today]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result) ;
    }
     
+
+   
    public function getProductsStatsByMonths() {
     $today =  date("Y-m-d"); 
     $date_arr = explode("-", $today);  
@@ -133,22 +136,44 @@ class ProductionModel {
     12
  );
 
+
+        $stmt = $this->conn->prepare("SELECT SUM(qte) as total , id ,ligne, produit, date, heure FROM production where YEAR(date) = ?  GROUP BY LOWER(ligne) ");
+        $stmt->execute([$year]);
+       
+    while( $row = $stmt->fetch(pdo::FETCH_ASSOC)){
+        $date_arrrow = explode("-", $row["date"]);  
+        $rowmonth = $date_arrrow[1];
+        $ligne = $row["ligne"];
+        $produit = $row["produit"];
+        $p = new ProductionByMonth($row["id"],$row["ligne"],$row["produit"],$row["date"],$row["heure"],$row["total"],-1,$year);
+        $prodmonths = array();
     foreach ($months as $month){
-        $stmt = $this->conn->prepare("SELECT sum(qte) as total,ligne, produit,date,heure,qte FROM production where YEAR(date) = ? and MONTH(date) = ? group by LOWER(ligne) ");
-        $stmt->execute([$year,$month]);
-
-        while( $row = $stmt->fetch(pdo::FETCH_ASSOC)){
-            array_push($prods, new ProductionByMonth(0,$row["ligne"],$row["produit"],$row["date"],$row["heure"],$row["qte"],$month,$year));
+       
+        if(($rowmonth == $month) ){
+            array_push($prodmonths,new Months($month,(int) $row["total"]));
+            // array_push($prods, new ProductionByMonth($row["id"],$row["ligne"],$row["produit"],$row["date"],$row["heure"],$row["total"],$month,$year));
+         }else if ($rowmonth != $month){
+            array_push($prodmonths,new Months($month,0));
+            // array_push($prods, new ProductionByMonth($row["id"],$row["ligne"],$row["produit"],$row["date"],$row["heure"],0,$month,$year));  
+          }
+            
         }
+    $p->months = $prodmonths;
+    array_push($prods,$p);
+    
     }
-
-  
-    echo json_encode($prods);
    
+
+    echo json_encode($prods);   
+
 
 
    }
 
 
 
+
 }
+
+
+

@@ -10,19 +10,19 @@ class ProductionByMonth {
     public $date;
     public $heure;
     public $qte;
-    public $month;
+    public $months = array();
     public $year;
 
 
     //constructor
-public function __construct($id,$ligne,$produit,$date,$heure,$qte, $month, $year) {
+public function __construct($id,$ligne,$produit,$date,$heure,$qte, $months, $year) {
     $this->id = $id;
     $this->ligne = $ligne;
     $this->produit = $produit;
     $this->date = $date;
     $this->heure = $heure;
     $this->qte = $qte;
-    $this->month = $month;
+    $this->months = $months;
     $this->year = $year;
  }
 
