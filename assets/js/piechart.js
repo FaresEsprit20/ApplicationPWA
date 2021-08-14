@@ -3,29 +3,80 @@
 $(document).ready(function(){
     
 
-
   function Radar() {
     $.ajax({    
         type: "GET",
         url: "http://localhost/Stage/server/Api/getProductsStatsByMonths.php",             
         dataType: "json",               
         success: function(dataRadar){      
-    
-      
         
+          var lignes = [];
+          var products = [];
+          var monthstotals = [];
+          var qtemonths = [];
+          
+          console.log(dataRadar);
+     
+          var colors =  [
+            "#2ecc71",
+            "#3498db",
+            "#95a5a6",
+            "#9b59b6",
+            "#f1c40f",
+            "#e74c3c",
+            "#34495e",
+            "#A52A2A",
+            "#FF1493",
+            "#BC8F8F",
+          ];
+          var selectedColors = colors.splice(dataRadar.length,colors.length);
+          console.log("selected Colors "+selectedColors);
+          var c = 0;
+          for( item of dataRadar){
+            monthstotals.push(item.months);
+            }
+            for( item of dataRadar){
+              for( ix of monthstotals){
+                qtemonths = [];
+               for (var i = 0 ; i < ix.length; i++){
+                qtemonths.push(parseInt (ix[i].qte));
+               }
+
+              }
+              let obj = {
+                label: item.ligne,
+                backgroundColor: selectedColors[c],
+                data: qtemonths
+              };
+              console.log(obj);
+              products.push(obj);
+             lignes.push(item.ligne);
+            
+             c++;
+             };
+             console.log(products);
+           
+  
+          
+           /* for( item of dataRadar){
+              item.total /= total;
+              item.total*=100;
+              item.total= item.total.toFixed(2);
+             }
+             for( item of dataRadar){
+              totals.push(item.total);
+              }
+             for( item of dataRadar){
+              console.log("produit "+item.produit+" Pourcentage  "+item.total);
+             }
+            console.log("Total...."+total);*/
+            console.log("Radar data loaded ....");
+                       
             var ctx = document.getElementById("myChartTwo").getContext('2d');
      
             var marksData = {
-                labels: ["English", "Maths", "Physics", "Chemistry", "Biology", "History"],
-                datasets: [{
-                  label: "Student A",
-                  backgroundColor: "rgba(200,0,0,0.2)",
-                  data: [65, 75, 70, 80, 60, 80]
-                }, {
-                  label: "Student B",
-                  backgroundColor: "rgba(0,0,200,0.2)",
-                  data: [54, 65, 60, 70, 70, 75]
-                }]
+                labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                datasets: products
               };
               var radarChart = new Chart(ctx, {
                 type: 'radar',
@@ -40,6 +91,7 @@ $(document).ready(function(){
       
       });
 }
+
  
 function Pie(){
   $.ajax({    
@@ -110,7 +162,7 @@ function Pie(){
 }
 
 
-Pie();
+
 Radar();
 
 

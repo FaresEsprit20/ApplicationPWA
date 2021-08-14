@@ -167,7 +167,6 @@ class ProductionModel {
     echo json_encode($prods);   
 
 
-
    }
 
 
