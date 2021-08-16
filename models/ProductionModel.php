@@ -150,8 +150,9 @@ class ProductionModel {
         $stmt = $this->conn->prepare("SELECT qte as total , id ,ligne, produit, date, heure FROM production where YEAR(date) = ? and ligne= ? ");
         $stmt->execute([$year,$ln]);
        
-      
+        $products = [];
         while($row = $stmt->fetch(pdo::FETCH_ASSOC)){
+           
             $p = new ProductsByCategory($row["id"],$row["ligne"],$row["produit"],$row["date"],$row["heure"],$row["total"],-1,$year);
             $date_arrrow = explode("-", $row["date"]);  
         $rowmonth = $date_arrrow[1];

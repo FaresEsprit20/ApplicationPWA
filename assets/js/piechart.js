@@ -32,11 +32,15 @@ $(document).ready(function(){
           var selectedColors = colors.splice(dataRadar.length,colors.length);
           console.log("selected Colors "+selectedColors);
           var c = 0;
-          for( item of dataRadar){
-            monthstotals.push(item.months);
+          for(var  item of dataRadar){
+            for ( var single of item.products){
+              monthstotals.push(item.months);
+              console.log(single);
+            }
+         
             }
              
-            for( ix of monthstotals){
+            for( var ix of monthstotals){
                 qtemonths = [];
                for (var i = 0 ; i < ix.length; i++){
               
