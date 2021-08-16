@@ -14,7 +14,7 @@ $(document).ready(function(){
           var products = [];
           var monthstotals = [];
           var qtemonths = [];
-          
+          var obj = null;
           console.log(dataRadar);
      
           var colors =  [
@@ -35,52 +35,48 @@ $(document).ready(function(){
           for( item of dataRadar){
             monthstotals.push(item.months);
             }
-            for( item of dataRadar){
-              for( ix of monthstotals){
+             
+            for( ix of monthstotals){
                 qtemonths = [];
                for (var i = 0 ; i < ix.length; i++){
+              
                 qtemonths.push(parseInt (ix[i].qte));
                }
-
-              }
-              let obj = {
-                label: item.ligne,
+                obj = {
                 backgroundColor: selectedColors[c],
                 data: qtemonths
               };
-              console.log(obj);
-              products.push(obj);
-             lignes.push(item.ligne);
-            
-             c++;
-             };
-             console.log(products);
-           
-  
-          
-           /* for( item of dataRadar){
-              item.total /= total;
-              item.total*=100;
-              item.total= item.total.toFixed(2);
-             }
-             for( item of dataRadar){
-              totals.push(item.total);
+              c++;
+             
+              products.push(obj)
               }
-             for( item of dataRadar){
-              console.log("produit "+item.produit+" Pourcentage  "+item.total);
-             }
-            console.log("Total...."+total);*/
+            console.log(products);
+
+            var finalprods = [];
+       for( var index = 0; index <products.length;index++) {
+           let prodobject = {
+            label: dataRadar[index].ligne,
+            backgroundColor: products[index].backgroundColor,
+            fill:true,
+            data: products[index].data
+           };
+          
+        finalprods.push(prodobject);
+       }       
+          console.log(finalprods);
+
             console.log("Radar data loaded ....");
                        
             var ctx = document.getElementById("myChartTwo").getContext('2d');
      
             var marksData = {
                 labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
-                datasets: products
+                datasets: finalprods
               };
               var radarChart = new Chart(ctx, {
                 type: 'radar',
                 data: marksData,
+                options: {}
             });
     
         
