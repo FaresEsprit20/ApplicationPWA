@@ -156,6 +156,7 @@ class ProductionModel {
             $p = new ProductsByCategory($row["id"],$row["ligne"],$row["produit"],$row["date"],$row["heure"],$row["total"],-1,$year);
             $date_arrrow = explode("-", $row["date"]);  
         $rowmonth = $date_arrrow[1];
+        $prodmonths = [];
             foreach ($months as $month){
        
                 if(($rowmonth == $month) ){

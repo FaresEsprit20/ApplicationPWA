@@ -11,9 +11,12 @@ $(document).ready(function(){
         success: function(dataRadar){      
         
           var lignes = [];
+          var ligness = [];
           var products = [];
           var monthstotals = [];
           var qtemonths = [];
+          var initialarray = [];
+          var filteredarray = [];
           var obj = null;
           console.log(dataRadar);
      
@@ -33,16 +36,47 @@ $(document).ready(function(){
           console.log("selected Colors "+selectedColors);
           var c = 0;
           for(var  item of dataRadar){
+            console.log(item.ligne);
+            ligness.push(item.ligne);
             for ( var single of item.products){
               monthstotals.push(item.months);
-              console.log(single);
+              //console.log(single);
+              initialarray.push(single);
             }
          
             }
-             
+            console.log("test");
+            console.log(ligness);
+            var selectMenu = document.getElementById('selectlignes');
+            for (var i = 0; i < ligness.length; i++) {
+              var option = document.createElement("option");
+              option.value = ligness[i];
+              option.text = ligness[i];
+              selectMenu.appendChild(option);
+          }
+            console.log(ligness);
+            var value = selectMenu.options[selectMenu.selectedIndex].value;
+            console.log(value); // 
+
+            var selected = value;
+             console.log(initialarray);
+           filteredarray  = initialarray.filter(item => item.ligne === selected);
+           console.log("filtered array");
+           console.log(filteredarray);
+           selectMenu.addEventListener("change", function(e){
+            selected = e.target.value;
+            console.log(selected);
+            filteredarray  = initialarray.filter(item => item.ligne === selected);
+            console.log("filtered array");
+           console.log(filteredarray);
+          }); 
+
+
+
+
             for( var ix of monthstotals){
                 qtemonths = [];
-               for (var i = 0 ; i < ix.length; i++){
+               for (var i = 0 ; i < ix.length ; i++){
               
                 qtemonths.push(parseInt (ix[i].qte));
                }

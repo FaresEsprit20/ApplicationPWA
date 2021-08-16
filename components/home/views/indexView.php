@@ -155,6 +155,9 @@
         </div>
         <div class="col-12 col-lg-8 col-sm-10">
           <div class="stat">
+            <select id="selectlignes">
+
+            </select>
        <canvas id="myChartTwo"></canvas>
        </div>
       </div>
