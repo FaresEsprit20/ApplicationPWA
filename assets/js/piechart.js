@@ -132,9 +132,8 @@ $(document).ready(function(){
                labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
                datasets: finalprods
              };
-             
              radarChart.destroy();
-
+             
               radarChart = new Chart(ctx, {
                type: 'radar',
                data: marksData,
@@ -202,33 +201,6 @@ $(document).ready(function(){
       
       });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -301,7 +273,7 @@ function Pie(){
 }
 
 
-
+Pie
 Radar();
 
 
