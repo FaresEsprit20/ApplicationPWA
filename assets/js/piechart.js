@@ -10,16 +10,20 @@ $(document).ready(function(){
         dataType: "json",               
         success: function(dataRadar){      
         
-          var lignes = [];
           var ligness = [];
           var products = [];
           var monthstotals = [];
           var qtemonths = [];
           var initialarray = [];
           var filteredarray = [];
+          var finalprods = [];
           var obj = null;
+          var radarChart;
+          var marksData;
+          var   ctx = document.getElementById("myChartTwo").getContext('2d');
           console.log(dataRadar);
-     
+
+          var c = 0;     
           var colors =  [
             "#2ecc71",
             "#3498db",
@@ -31,22 +35,28 @@ $(document).ready(function(){
             "#A52A2A",
             "#FF1493",
             "#BC8F8F",
+            "crimson",
+            "red",
+            "blue",
+            "magenta",
+            "yellow",
+            "olive"
           ];
-          var selectedColors = colors.splice(dataRadar.length,colors.length);
+          var selectedColors = colors.splice(0,dataRadar.length);
           console.log("selected Colors "+selectedColors);
-          var c = 0;
+       
           for(var  item of dataRadar){
             console.log(item.ligne);
             ligness.push(item.ligne);
             for ( var single of item.products){
-              monthstotals.push(item.months);
-              //console.log(single);
+             // console.log(single);
               initialarray.push(single);
             }
          
             }
-            console.log("test");
-            console.log(ligness);
+            console.log("initial array");
+            console.log(initialarray);
+          
             var selectMenu = document.getElementById('selectlignes');
             for (var i = 0; i < ligness.length; i++) {
               var option = document.createElement("option");
@@ -56,44 +66,55 @@ $(document).ready(function(){
           }
             console.log(ligness);
             var value = selectMenu.options[selectMenu.selectedIndex].value;
-            console.log(value); // 
+            console.log(value); 
 
             var selected = value;
              console.log(initialarray);
-           filteredarray  = initialarray.filter(item => item.ligne === selected);
-           console.log("filtered array");
-           console.log(filteredarray);
+             filteredarray  = initialarray.filter(item => item.ligne == selected);
+             console.log("filtered array");
+             console.log(filteredarray);
+             for(var item of filteredarray){
+             monthstotals.push(item.months);
+             }
+             console.log("months totals");
+             console.log(monthstotals);
+           
            selectMenu.addEventListener("change", function(e){
+             c = 0;
             selected = e.target.value;
             console.log(selected);
-            filteredarray  = initialarray.filter(item => item.ligne === selected);
+            filteredarray  = initialarray.filter(item => item.ligne == selected);
             console.log("filtered array");
            console.log(filteredarray);
-          }); 
-
-
-
-
-            for( var ix of monthstotals){
-                qtemonths = [];
-               for (var i = 0 ; i < ix.length ; i++){
-              
-                qtemonths.push(parseInt (ix[i].qte));
-               }
-                obj = {
-                backgroundColor: selectedColors[c],
-                data: qtemonths
-              };
-              c++;
-             
-              products.push(obj)
-              }
+           monthstotals = [];
+           products = [];
+           for(var item of filteredarray){
+            monthstotals.push(item.months);
+            }
+            console.log("months totals");
+            console.log(monthstotals);
+          
+            for( var item of monthstotals){
+              qtemonths = [];
+             for (var i = 0 ; i < item.length ; i++){
+            
+              qtemonths.push(parseInt (item[i].qte));
+             }
+              obj = {
+              backgroundColor: colors[c],
+              data: qtemonths
+            };
+            c++;
+           
+            products.push(obj)
+            }
+            console.log("products of primary obj");
             console.log(products);
-
-            var finalprods = [];
+            
+          finalprods = [];
        for( var index = 0; index <products.length;index++) {
            let prodobject = {
-            label: dataRadar[index].ligne,
+            label: filteredarray[index].produit,
             backgroundColor: products[index].backgroundColor,
             fill:true,
             data: products[index].data
@@ -101,17 +122,73 @@ $(document).ready(function(){
           
         finalprods.push(prodobject);
        }       
+       console.log("products of final obj");
+          console.log(finalprods);
+
+            console.log("Radar data loaded .... with event change");
+           
+     
+            marksData = {
+               labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+               datasets: finalprods
+             };
+             
+             radarChart.destroy();
+
+              radarChart = new Chart(ctx, {
+               type: 'radar',
+               data: marksData,
+               options: {}
+           });
+
+
+
+            
+          }); 
+
+
+
+            for( var item of monthstotals){
+                qtemonths = [];
+               for (var i = 0 ; i < item.length ; i++){
+              
+                qtemonths.push(parseInt (item[i].qte));
+               }
+                obj = {
+                backgroundColor: colors[c],
+                data: qtemonths
+              };
+              c++;
+             
+              products.push(obj)
+              }
+              console.log("products of primary obj");
+              console.log(products);
+              
+          
+
+            var finalprods = [];
+       for( var index = 0; index <products.length;index++) {
+           let prodobject = {
+            label: filteredarray[index].produit,
+            backgroundColor: products[index].backgroundColor,
+            fill:true,
+            data: products[index].data
+           };
+          
+        finalprods.push(prodobject);
+       }       
+       console.log("products of final obj");
           console.log(finalprods);
 
             console.log("Radar data loaded ....");
-                       
-            var ctx = document.getElementById("myChartTwo").getContext('2d');
+                      
      
-            var marksData = {
+             marksData = {
                 labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
                 datasets: finalprods
               };
-              var radarChart = new Chart(ctx, {
+               radarChart = new Chart(ctx, {
                 type: 'radar',
                 data: marksData,
                 options: {}
@@ -125,6 +202,34 @@ $(document).ready(function(){
       
       });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 function Pie(){
