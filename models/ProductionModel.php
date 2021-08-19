@@ -97,8 +97,10 @@ class ProductionModel {
 
    public function getTodayProduction() {
     $today =  date("Y-m-d");
+    $date_arr = explode("-", $today);  
+    $year = $date_arr[0];
     $stmt = $this->conn->prepare("SELECT * FROM production where date = ? ");
-    $stmt->execute([$today]);
+    $stmt->execute([$year]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result) ;
 
@@ -106,7 +108,7 @@ class ProductionModel {
 
    public function getProductsStatsByType(){
     $today =  date("Y-m-d");    
-    $stmt = $this->conn->prepare("SELECT SUM(qte) as total,ligne, produit,date,heure FROM production where date = ? group by LOWER(ligne) ");
+    $stmt = $this->conn->prepare("SELECT SUM(qte) as total,ligne, produit,date,heure FROM production where YEAR(date) = ?  group by LOWER(ligne) ");
     $stmt->execute([$today]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result) ;

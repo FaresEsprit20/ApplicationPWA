@@ -164,6 +164,27 @@
       <div class="col col-lg-2 col-sm-1">
         </div>
         </div>
+
+
+
+
+        
+        <div class="row">
+        <div class="col col-lg-2 col-sm-1">
+        </div>
+        <div class="col-12 col-lg-8 col-sm-10">
+          <div class="stat">
+            <select id="selectligness">
+
+            </select>
+       <canvas id="myChartThree" height="200px"></canvas>
+       </div>
+      </div>
+      <div class="col col-lg-2 col-sm-1">
+        </div>
+        </div>
+
+        
         
     </div>
   </section>
