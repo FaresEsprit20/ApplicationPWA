@@ -1,9 +1,9 @@
-const staticDevCoffee = 'stage-cache-appss';
+const staticDevCoffee = 'stage-cache-app';
 const assets = [
   '/',
   'http://127.0.0.1/Stage/',
   'index.html',
-  'http://127.0.0.1/Stage/manifest.json',
+  'manifest.json',
   'css/style.css',
   'assets/js/ajax.js',
   'assets/js/main-script.js',
