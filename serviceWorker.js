@@ -3,6 +3,7 @@ const assets = [
   '/',
   'http://127.0.0.1/Stage/',
   'index.html',
+  'http://127.0.0.1/Stage/manifest.json',
   'css/style.css',
   'assets/js/ajax.js',
   'assets/js/main-script.js',
