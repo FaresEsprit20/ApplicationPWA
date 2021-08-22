@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
  
 // imports will be here
 require "ProductionByMonth.php";

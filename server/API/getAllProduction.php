@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 //calling model file
 require "../server.php";
 require "../../models/ProductionModel.php";

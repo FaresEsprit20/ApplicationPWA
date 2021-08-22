@@ -677,10 +677,10 @@ $(document).ready(function(){
 
 
  
-function Pie(){
+function Pie($url){
   $.ajax({    
     type: "GET",
-    url: "http://localhost/Stage/server/Api/getProductsStatsByType.php",             
+    url: $url,           
     dataType: "json",               
     success: function(data){      
     total = 0;
@@ -754,12 +754,17 @@ function Pie(){
 }
 
 
-Pie();
-RadarByMonths("http://localhost/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
-LineByMonths("http://localhost/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
-BarByMonths("http://localhost/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
+Pie("http://127.0.0.1/Stage/server/Api/getProductsStatsByType.php");
+RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
+LineByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
+BarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
 
 
-  
+/* Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
+RadarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
+LineByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
+BarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
+  }); */  
+
 
   });

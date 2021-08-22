@@ -7,25 +7,60 @@
         <title>Internship Project</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900,900i" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link rel="manifest" href="manifest.json">
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />  
         <link rel="apple-touch-icon" href="assets/images/hello-icon-152.png">   
         <meta name="theme-color" content="white"/>  
         <meta name="apple-mobile-web-app-capable" content="yes">  
         <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
-        <meta name="apple-mobile-web-app-title" content="Hello World"> 
-        <meta name="msapplication-TileImage" content="assets/images/hello-icon-144.png">  
-        <meta name="msapplication-TileColor" content="#FFFFFF">
+    
     </head>
     
     <body>
         <a id="button-scroll-top"></a>
-        <?php 
-         require "components/navbar/controller/navbarController.php";
-        ?>
+        <header>
+    <nav class="navbar fixed-top navbar-light bg-light" id="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="assets/images/logo/logo.jpeg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            PWA
+          </a>
+          <!--bouton fermée de toggle  btn-close -->
+          <button class="navbar-toggler shadow-none" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+               
+                <a class="nav-link d-inline-block" aria-current="page" href="#landing">Accueil</a>
+                <i class="navbar-fa fa fa-home fa-2x  d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                
+                <a class="nav-link d-inline-block" href="#features">Nos services</a>
+                <i class="navbar-fa fa fa-pencil-square fa-2x d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-inline-block" href="#products">Produits</a>
+                <i class="navbar-fa fa fa-product-hunt fa-2x d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-inline-block" href="#stats">Statistiques</a>
+                <i class="navbar-fa fa fa-area-chart fa-2x d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-inline-block" href="#contact">Contact</a>
+                <i class="navbar-fa fa fa-mail-forward fa-2x d-inline-block"></i>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
        
 
 <main>
@@ -236,9 +271,23 @@
   <!-- End Contact -->
 </div>
 </main>
-<?php 
-         include "components/footer/controller/footerController.php";
-        ?>
+<footer>
+    <div class="bg-light">
+        <div class="container">
+          <div class="row pt-4 pb-3">
+            <div class="col">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item"><a href="#">À propos</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Vie privée</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Conditions d'utilisations</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+</footer>
 
 
     <!-- Popper.js first, then Bootstrap JS -->

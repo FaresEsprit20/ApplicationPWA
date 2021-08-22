@@ -1,6 +1,12 @@
 {
     "name": "INternship project",
     "short_name": "project",
+    "description": "Internship porject",
+    "start_url": "http://127.0.0.1/Stage/index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#dc143c",
+    "theme_color": "#FFE1C4",
     "icons": [{
         "src": "assets/images/hello-icon-128.png",
           "sizes": "128x128",
@@ -25,10 +31,6 @@
           "src": "assets/images/hello-icon-512.png",
           "sizes": "512x512",
           "type": "image/png"
-        }],
-    "lang": "en-US",
-    "start_url": "index.php",
-    "display": "standalone",
-    "background_color": "crimson",
-    "theme_color": "white"
+        }]
+
   }
