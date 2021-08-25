@@ -1,8 +1,10 @@
 const staticDevCoffee = 'stage-cache-app';
+const dynamicDevCoffee = 'dynamic-stage-cache-app';
 const assets = [
   '/',
   'http://127.0.0.1/Stage/',
   'index.html',
+  'offline.html',
   'manifest.json',
   'css/style.css',
   'assets/js/ajax.js',
@@ -20,7 +22,6 @@ const assets = [
   'assets/images/hello-icon-256.png',
   'assets/images/hello-icon-512.png',
   'node_modules/jquery/dist/jquery.min.js',
-  'scss/popperjs/popper.min.js',
   'node_modules/bootstrap/dist/js/bootstrap.js',
   'node_modules/chart.js/dist/chart.js',
 
@@ -49,16 +50,20 @@ self.addEventListener('activate', (evt) => {
     );
 });
 
-// When there's an incoming fetch request, try and respond with a precached resource, otherwise fall back to the network
-self.addEventListener('fetch', (event) => {
-  console.log('Fetch intercepted for:', event.request.url);
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request);
-    }),
+
+self.addEventListener('fetch', function(event) {
+  return event.respondWith(
+    caches.match(event.request)
+    .then(function(response) {
+      let requestToCache = event.request.clone();
+
+      return fetch(requestToCache).then().catch(error => {
+        // Check if the user is offline first and is trying to navigate to a web page
+        if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {
+          // Return the offline page
+          return caches.match('http://127.0.0.1/Stage/offline.html');
+        }
+      });
+    })
   );
 });
-

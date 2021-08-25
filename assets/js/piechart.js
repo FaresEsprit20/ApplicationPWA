@@ -759,12 +759,11 @@ RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","
 LineByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
 BarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
 
-
-/* Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
+/*
+Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
 RadarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
 LineByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
 BarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
-  }); */  
-
+*/
 
   });

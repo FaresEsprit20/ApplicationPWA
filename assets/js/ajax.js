@@ -5,7 +5,8 @@ $(document).ready(function(){
 
     $.ajax({    
         type: "GET",
-        url: "http://127.0.0.1/Stage/server/Api/getTodayProduction.php",             
+        url: "http://127.0.0.1/Stage/server/Api/getTodayProduction.php",      
+       // url: "http://10.0.2.2/Stage/server/Api/getTodayProduction.php",                   
         dataType: "json",               
         success: function(data){      
           var jsonData = data;
