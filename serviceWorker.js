@@ -28,6 +28,7 @@ const assets = [
 
 ];
   
+
 self.addEventListener('install', (installEvent) => {
   installEvent.waitUntil(
     caches.open(staticDevCoffee).then(cache => {
@@ -37,8 +38,9 @@ self.addEventListener('install', (installEvent) => {
   )
 });
 
+
 self.addEventListener('activate', (evt) => {
-   // console.log(' Service has been activated ! ');
+    console.log(' Service has been activated ! ');
     evt.waitUntil(
       caches.keys().then(keys => {
         //console.log(keys);
@@ -48,6 +50,7 @@ self.addEventListener('activate', (evt) => {
         );
       })
     );
+    self.skipWaiting();
 });
 
 

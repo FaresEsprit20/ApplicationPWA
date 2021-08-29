@@ -12,6 +12,7 @@
     "bootstrap": "^5.0.2",
     "chart.js": "^3.5.0",
     "font-awesome": "^4.5.0",
+    "idb": "^6.1.2",
     "jquery": "^3.6.0"
   }
 }

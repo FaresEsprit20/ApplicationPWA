@@ -1,10 +1,31 @@
 
+function store () {
+  // create the transaction with 1st parameter is the list of stores and the second specifies
+  // a flag for the readwrite option
+  var transaction = db.transaction([ 'Apps' ], 'readwrite');
+
+  //Create the Object to be saved i.e. our App details
+  var value = {};
+  value.name = name;
+  value.desc = description;
+
+  // add the details to the store
+  var store = transaction.objectStore('Apps');
+  var request = store.add(value);
+  request.onsuccess = function (e) {
+      alert("Your App data has been saved");
+  };
+  request.onerror = function (e) {
+      alert("Error in saving the App data. Reason : " + e.value);
+  }
+}
+
+var db;
 
 $(document).ready(function(){
     
 
   var year = new Date().getFullYear();
-
 
 
   function BarByMonths($url,$chartId) {
@@ -753,6 +774,47 @@ function Pie($url){
 });
 }
 
+function testDbCompatibility() {
+  window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
+  window.msIndexedDB;
+   
+  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
+  window.msIDBTransaction;
+  window.IDBKeyRange = window.IDBKeyRange || 
+  window.webkitIDBKeyRange || window.msIDBKeyRange
+
+if (!window.indexedDB) {
+  window.alert("Your browser doesn't support a stable version of IndexedDB.");
+  console.log("Your browser doesn't support a stable version of IndexedDB.");
+}
+
+if (window.indexedDB) {
+  console.log("IndexedDB is supported");
+}
+else {
+  alert("Indexed DB is not supported!");
+}
+
+// open the database
+// 1st parameter : Database name. We are using the name 'Appsdb'
+// 2nd parameter is the version of the database.
+var request = indexedDB.open('Appsdb', 1);
+
+request.onsuccess = function (e) {
+  // e.target.result has the connection to the database
+  db = e.target.result;
+
+  console.log(db);
+  console.log("DB Opened!");
+}
+
+request.onerror = function (e) {
+  console.log(e);
+};
+}
+
+
+testDbCompatibility();
 
 Pie("http://127.0.0.1/Stage/server/Api/getProductsStatsByType.php");
 RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
