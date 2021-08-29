@@ -534,7 +534,8 @@ $(document).ready(function(){
             }
             console.log("initial array");
             console.log(initialarray);
-          
+        
+
             var selectMenu = document.getElementById('selectlignes');
             for (var i = 0; i < ligness.length; i++) {
               var option = document.createElement("option");
@@ -550,6 +551,7 @@ $(document).ready(function(){
              console.log(initialarray);
              filteredarray  = initialarray.filter(item => item.ligne == selected);
              console.log("filtered array");
+             testDbCompatibility(initialarray);
              console.log(filteredarray);
              for(var item of filteredarray){
              monthstotals.push(item.months);
@@ -774,7 +776,28 @@ function Pie($url){
 });
 }
 
-function testDbCompatibility() {
+
+function add($item) 
+{
+ 
+  var req = db.transaction(['monthscharts'], 'readwrite')
+    .objectStore('monthscharts')
+    .put($item);
+
+    
+  req.onsuccess = function (event) {
+    console.log('The data has been written successfully');
+  };
+
+  req.onerror = function (event) {
+    console.log('The data has been written failed'+event);
+  }
+}
+
+
+
+function testDbCompatibility($arr) {
+
   window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
   window.msIndexedDB;
    
@@ -798,7 +821,7 @@ else {
 // open the database
 // 1st parameter : Database name. We are using the name 'Appsdb'
 // 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 1);
+var request = indexedDB.open('Appsdb', 5);
 
 request.onsuccess = function (e) {
   // e.target.result has the connection to the database
@@ -806,15 +829,35 @@ request.onsuccess = function (e) {
 
   console.log(db);
   console.log("DB Opened!");
+  
+  //add object
+ 
+  for(var item of $arr){
+    add(item);
+  }
+
+
 }
 
 request.onerror = function (e) {
   console.log(e);
 };
+
+
+// this will fire when the version of the database changes
+    // We can only create Object stores in a versionchange transaction.
+    request.onupgradeneeded = function (e) {
+      // e.target.result holds the connection to database
+      db = e.target.result;
+
+          db.createObjectStore('monthscharts', { keyPath: 'id' });
+
+  };
+
 }
 
 
-testDbCompatibility();
+//testDbCompatibility();
 
 Pie("http://127.0.0.1/Stage/server/Api/getProductsStatsByType.php");
 RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
