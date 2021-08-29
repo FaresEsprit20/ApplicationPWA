@@ -12,6 +12,7 @@ const assets = [
   'https://fonts.googleapis.com/css?family=Merriweather:400,900,900i',
   'assets/js/main.js',
   'assets/js/piechart.js',
+  'assets/js/chartsoffline',
   'assets/images/Into/into.jpg',
   'assets/images/Into/intro-sm.jpg',
   'assets/images/logo/logo.jpeg',

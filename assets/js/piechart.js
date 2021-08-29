@@ -550,8 +550,8 @@ $(document).ready(function(){
             var selected = value;
              console.log(initialarray);
              filteredarray  = initialarray.filter(item => item.ligne == selected);
-             console.log("filtered array");
              testDbCompatibility(initialarray);
+             console.log("filtered array");
              console.log(filteredarray);
              for(var item of filteredarray){
              monthstotals.push(item.months);
@@ -794,7 +794,75 @@ function add($item)
   }
 }
 
+function readAll() {
 
+  window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
+  window.msIndexedDB;
+   
+  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
+  window.msIDBTransaction;
+  window.IDBKeyRange = window.IDBKeyRange || 
+  window.webkitIDBKeyRange || window.msIDBKeyRange
+
+if (!window.indexedDB) {
+  window.alert("Your browser doesn't support a stable version of IndexedDB.");
+  console.log("Your browser doesn't support a stable version of IndexedDB.");
+}
+
+if (window.indexedDB) {
+  console.log("IndexedDB is supported");
+}
+else {
+  alert("Indexed DB is not supported!");
+}
+
+// open the database
+// 1st parameter : Database name. We are using the name 'Appsdb'
+// 2nd parameter is the version of the database.
+var request = indexedDB.open('Appsdb', 5);
+
+request.onsuccess = function (e) {
+  // e.target.result has the connection to the database
+  db = e.target.result;
+
+  console.log(db);
+  console.log("DB Opened!");
+  
+  //read object
+ 
+  var objectStore = db.transaction("monthscharts").objectStore("monthscharts");
+  
+  objectStore.openCursor().onsuccess = function(event) {
+     var cursor = event.target.result;
+     console.log("cursor"+cursor.value);
+     cursor.continue();
+     
+     if (cursor) {
+        alert("Name for id " + cursor.key + " is " + cursor.value.id);
+     } else {
+        alert("No more entries!");
+     }
+  };
+
+}
+
+request.onerror = function (e) {
+  console.log(e);
+};
+
+
+// this will fire when the version of the database changes
+    // We can only create Object stores in a versionchange transaction.
+    request.onupgradeneeded = function (e) {
+      // e.target.result holds the connection to database
+      db = e.target.result;
+
+          db.createObjectStore('monthscharts', { keyPath: 'id' });
+
+  };
+
+
+}
 
 function testDbCompatibility($arr) {
 
@@ -863,7 +931,7 @@ Pie("http://127.0.0.1/Stage/server/Api/getProductsStatsByType.php");
 RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
 LineByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
 BarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
-
+//readAll();
 /*
 Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
 RadarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
