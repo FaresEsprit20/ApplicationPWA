@@ -499,7 +499,8 @@ $(document).ready(function(){
           var radarChart;
           var marksData;
           var   ctx = document.getElementById($chartId).getContext('2d');
-          console.log(dataRadar);
+          console.log("data Radar  "+dataRadar);
+         
 
           var c = 0;     
           var colors =  [
@@ -534,7 +535,7 @@ $(document).ready(function(){
             }
             console.log("initial array");
             console.log(initialarray);
-        
+            testDbCompatibility(initialarray);
 
             var selectMenu = document.getElementById('selectlignes');
             for (var i = 0; i < ligness.length; i++) {
@@ -550,7 +551,7 @@ $(document).ready(function(){
             var selected = value;
              console.log(initialarray);
              filteredarray  = initialarray.filter(item => item.ligne == selected);
-             testDbCompatibility(initialarray);
+            
              console.log("filtered array");
              console.log(filteredarray);
              for(var item of filteredarray){
@@ -819,7 +820,7 @@ else {
 // open the database
 // 1st parameter : Database name. We are using the name 'Appsdb'
 // 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 5);
+var request = indexedDB.open('Appsdb', 6);
 
 request.onsuccess = function (e) {
   // e.target.result has the connection to the database
@@ -889,7 +890,7 @@ else {
 // open the database
 // 1st parameter : Database name. We are using the name 'Appsdb'
 // 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 5);
+var request = indexedDB.open('Appsdb', 6);
 
 request.onsuccess = function (e) {
   // e.target.result has the connection to the database

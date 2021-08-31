@@ -1,24 +1,4 @@
 
-function store () {
-    // create the transaction with 1st parameter is the list of stores and the second specifies
-    // a flag for the readwrite option
-    var transaction = db.transaction([ 'Apps' ], 'readwrite');
-  
-    //Create the Object to be saved i.e. our App details
-    var value = {};
-    value.name = name;
-    value.desc = description;
-  
-    // add the details to the store
-    var store = transaction.objectStore('Apps');
-    var request = store.add(value);
-    request.onsuccess = function (e) {
-        alert("Your App data has been saved");
-    };
-    request.onerror = function (e) {
-        alert("Error in saving the App data. Reason : " + e.value);
-    }
-  }
   
   var db;
   
@@ -29,11 +9,7 @@ function store () {
   
   
     function BarByMonths($url,$chartId) {
-      $.ajax({    
-          type: "GET",
-          url: $url,             
-          dataType: "json",               
-          success: function(dataRadar){      
+      
           
             var ligness = [];
             var products = [];
@@ -238,22 +214,11 @@ function store () {
                   },
               });
       
-          
-         
-          },
-        
-          error: function (data) { alert("Server Error"); }
-        
-        });
   }
   
   
     function LineByMonths($url,$chartId) {
-      $.ajax({    
-          type: "GET",
-          url: $url,             
-          dataType: "json",               
-          success: function(dataRadar){      
+   
           
             var ligness = [];
             var products = [];
@@ -460,13 +425,7 @@ function store () {
                   }
               });
       
-          
-         
-          },
-        
-          error: function (data) { alert("Server Error"); }
-        
-        });
+
   }
   
   
@@ -482,11 +441,7 @@ function store () {
   
   
     function RadarByMonths($url,$chartId) {
-      $.ajax({    
-          type: "GET",
-          url: $url,             
-          dataType: "json",               
-          success: function(dataRadar){      
+       
           
             var ligness = [];
             var products = [];
@@ -550,7 +505,7 @@ function store () {
               var selected = value;
                console.log(initialarray);
                filteredarray  = initialarray.filter(item => item.ligne == selected);
-               testDbCompatibility(initialarray);
+              
                console.log("filtered array");
                console.log(filteredarray);
                for(var item of filteredarray){
@@ -690,22 +645,12 @@ function store () {
               });
       
           
-         
-          },
-        
-          error: function (data) { alert("Server Error"); }
-        
-        });
   }
   
   
    
   function Pie($url){
-    $.ajax({    
-      type: "GET",
-      url: $url,           
-      dataType: "json",               
-      success: function(data){      
+    
       total = 0;
       var lignes = [];
       var totals = [];
@@ -769,30 +714,11 @@ function store () {
             }]
           }
         });
-      },
-  
-      error: function (data) { alert("Server Error"); }
-  
-  });
+     
   }
   
   
-  function add($item) 
-  {
-   
-    var req = db.transaction(['monthscharts'], 'readwrite')
-      .objectStore('monthscharts')
-      .put($item);
-  
-      
-    req.onsuccess = function (event) {
-      console.log('The data has been written successfully');
-    };
-  
-    req.onerror = function (event) {
-      console.log('The data has been written failed'+event);
-    }
-  }
+
   
   function readAll() {
   
@@ -819,7 +745,7 @@ function store () {
   // open the database
   // 1st parameter : Database name. We are using the name 'Appsdb'
   // 2nd parameter is the version of the database.
-  var request = indexedDB.open('Appsdb', 5);
+  var request = indexedDB.open('Appsdb', 6);
   
   request.onsuccess = function (e) {
     // e.target.result has the connection to the database
@@ -844,94 +770,36 @@ function store () {
        }
     };
   
-  }
-  
-  request.onerror = function (e) {
-    console.log(e);
-  };
-  
-  
-  // this will fire when the version of the database changes
-      // We can only create Object stores in a versionchange transaction.
-      request.onupgradeneeded = function (e) {
-        // e.target.result holds the connection to database
-        db = e.target.result;
-  
-            db.createObjectStore('monthscharts', { keyPath: 'id' });
-  
-    };
-  
-  
-  }
-  
-  function testDbCompatibility($arr) {
-  
-    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
-    window.msIndexedDB;
-     
-    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
-    window.msIDBTransaction;
-    window.IDBKeyRange = window.IDBKeyRange || 
-    window.webkitIDBKeyRange || window.msIDBKeyRange
-  
-  if (!window.indexedDB) {
-    window.alert("Your browser doesn't support a stable version of IndexedDB.");
-    console.log("Your browser doesn't support a stable version of IndexedDB.");
-  }
-  
-  if (window.indexedDB) {
-    console.log("IndexedDB is supported");
-  }
-  else {
-    alert("Indexed DB is not supported!");
-  }
-  
-  // open the database
-  // 1st parameter : Database name. We are using the name 'Appsdb'
-  // 2nd parameter is the version of the database.
-  var request = indexedDB.open('Appsdb', 5);
-  
-  request.onsuccess = function (e) {
-    // e.target.result has the connection to the database
-    db = e.target.result;
-  
-    console.log(db);
-    console.log("DB Opened!");
-    
-    //add object
-   
-    for(var item of $arr){
-      add(item);
-    }
-  
-  
-  }
-  
-  request.onerror = function (e) {
-    console.log(e);
-  };
-  
-  
-  // this will fire when the version of the database changes
-      // We can only create Object stores in a versionchange transaction.
-      request.onupgradeneeded = function (e) {
-        // e.target.result holds the connection to database
-        db = e.target.result;
-  
-            db.createObjectStore('monthscharts', { keyPath: 'id' });
-  
-    };
-  
-  }
-  
-  
-  //testDbCompatibility();
-  
+      
   Pie("http://127.0.0.1/Stage/server/Api/getProductsStatsByType.php");
   RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
   LineByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
   BarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
-  //readAll();
+  }
+  
+  request.onerror = function (e) {
+    console.log(e);
+  };
+  
+  
+  // this will fire when the version of the database changes
+      // We can only create Object stores in a versionchange transaction.
+      request.onupgradeneeded = function (e) {
+        // e.target.result holds the connection to database
+        db = e.target.result;
+  
+            db.createObjectStore('monthscharts', { keyPath: 'id' });
+  
+    };
+  
+  
+  }
+  
+  
+  
+  
+
+  readAll();
   /*
   Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
   RadarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");

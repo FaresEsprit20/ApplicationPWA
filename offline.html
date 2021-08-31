@@ -1,45 +1,331 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>You are offline</title>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Internship Project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,900,900i" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="manifest" href="manifest.json">
+        <link rel="apple-touch-icon" href="assets/images/hello-icon-152.png">   
+        <meta name="theme-color" content="white"/>  
+        <meta name="apple-mobile-web-app-capable" content="yes">  
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+    
+    </head>
+    
+    <body>
+        <a id="button-scroll-top"></a>
+        <header>
+    <nav class="navbar fixed-top navbar-light bg-light" id="navbar">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="assets/images/logo/logo.jpeg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            PWA Offline Mode
+          </a>
+          <!--bouton fermée de toggle  btn-close -->
+          <button class="navbar-toggler shadow-none" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+               
+                <a class="nav-link d-inline-block" aria-current="page" href="#landing">Accueil</a>
+                <i class="navbar-fa fa fa-home fa-2x  d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                
+                <a class="nav-link d-inline-block" href="#features">Nos services</a>
+                <i class="navbar-fa fa fa-pencil-square fa-2x d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-inline-block" href="#products">Produits</a>
+                <i class="navbar-fa fa fa-product-hunt fa-2x d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-inline-block" href="#stats">Statistiques</a>
+                <i class="navbar-fa fa fa-area-chart fa-2x d-inline-block"></i>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link d-inline-block" href="#contact">Contact</a>
+                <i class="navbar-fa fa fa-mail-forward fa-2x d-inline-block"></i>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
+       
 
-    <!-- Inline the page's stylesheet. -->
-    <style>
-      body {
-        font-family: helvetica, arial, sans-serif;
-        margin: 2em;
-      }
+<main>
+<!-- Start Modal -->
+<!-- Vertically centered scrollable modal -->
 
-      h1 {
-        font-style: italic;
-        color: #373fff;
-      }
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Intenship App</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       You are in offline mode
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">Understood!</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- End Modal -->
 
-      p {
-        margin-block: 1rem;
-      }
+    <!-- Start Landing Section -->
 
-      button {
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>You are offline</h1>
+<section class="landing" id="landing">
+  <div class="intro-text">
+      <h1>
+          Hello There
+      </h1>
+      <p>
+          Feel free to use our app
+      </p>
+  </div>
+</section>
 
-    <p>Click the button below to try reloading.</p>
-    <button type="button">⤾ Reload</button>
+<!-- End Landing Section -->
+
+
+<!-- Start Features Section -->
+
+
+  <!-- Start Features Section -->
+
+  <section class="features" id="features">
+    <div class="container-fluid">
+      <h2 class="special-heading">Fonctionnalités</h2>
+        <p>Ce que nous offrons</p>
+        <div class="row">
+<div class="col-12  col-lg-4 col-sm-12">
+  <div class="feat">
+    <i class="fa fa-mobile-phone fa-3x"></i>
+<h3>Mobile First App</h3>
+<p>Application responsive et adaptée aux terminaux mobiles. Cette application offre une meilleure expérience utilisateur et elle est trés facile a utiliser.</p>
+</div>
+</div>
+
+<div class="col-12  col-lg-4 col-sm-12">
+  <div class="feat">
+    <i class="fa fa-product-hunt fa-3x"></i>
+<h3>Suivre vos produits</h3>
+<p>Nous vous proposons un suivi quotidien de vos produits chaque jour et chaque heure avec un simple click!</p>
+</div>
+</div>
+
+<div class="col-12  col-lg-4 col-sm-12">
+  <div class="feat">
+    <i class="fa fa-pie-chart fa-3x"></i>
+<h3>Statistics Dashboard</h3>
+<p>Vous pouvez suivre vos produits grâce à nos superbes chartes graphiques et tableaux de bord que nous vous proposons pour un meilleur service.</p>
+</div>
+</div>
+
+  </div>
+        
+    </div>
+  </section>
+
+  <!-- End Features Section -->
+  
+
+<!-- Start Products -->
+
+<section class="products" id="products">
+  <div class="container-fluid">
+    <div class="special-heading">Produits</div>
+      <p>Suivre la production journalière</p>
+  <div class="row">
+  <div class="col col-sm col-lg-2">
+  </div>
+    <div class="col-12 col-sm-12 col-lg-8">
+
+      
+      <div class="products-table mt-5 mb-5">
+        <div class="table-responsive">
+
+          <table class="table">
+            <caption>Liste de production</caption>
+            <thead class="table-dark">
+              <th scope="col">#</th>
+              <th scope="col">Ligne</th>
+              <th scope="col">Produit</th>
+              <th scope="col">Date</th>
+              <th scope="col">Heure</th>
+              <th scope="col">Qte</th>
+            </thead>
+            <tbody id="tbodydaily">
+              
+            </tbody>
+          </table>
+      
+        </div>
+
+    </div>
+  </div>
+  <div class="col col-sm col-lg-2">
+  </div>
+  </div>
+ 
+</section>
+
+<!-- End Products -->
+
+
+
+<!-- Start Stats -->
+
+<section class="stats" id="stats">
+    <div class="container-fluid">
+      <h2 class="special-heading">Statistiques</h2>
+        <p>Suivre les statistiques journalières</p>
+        <div class="row">
+        <div class="col col-lg-2 col-sm-1">
+        </div>
+        <div class="col-12 col-lg-8 col-sm-10">
+          <div class="stat">
+       <canvas id="myChartOne"></canvas>
+       </div>
+      </div>
+      <div class="col col-lg-2 col-sm-1">
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col col-lg-2 col-sm-1">
+        </div>
+        <div class="col-12 col-lg-8 col-sm-10">
+          <div class="stat">
+            <select id="selectlignes">
+
+            </select>
+       <canvas id="myChartTwo"></canvas>
+       </div>
+      </div>
+      <div class="col col-lg-2 col-sm-1">
+        </div>
+        </div>
+
+
+
+
+        
+        <div class="row">
+        <div class="col col-lg-2 col-sm-1">
+        </div>
+        <div class="col-12 col-lg-8 col-sm-10">
+          <div class="stat">
+            <select id="selectligness">
+
+            </select>
+       <canvas id="myChartThree" height="200px"></canvas>
+       </div>
+      </div>
+      <div class="col col-lg-2 col-sm-1">
+        </div>
+        </div>
+
+
+        <div class="row">
+        <div class="col col-lg-2 col-sm-1">
+        </div>
+        <div class="col-12 col-lg-8 col-sm-10">
+          <div class="stat">
+            <select id="selectlignesbar">
+
+            </select>
+       <canvas id="myChartFour" height="250px"></canvas>
+       </div>
+      </div>
+      <div class="col col-lg-2 col-sm-1">
+        </div>
+        </div>
+        
+        
+    </div>
+  </section>
+
+<!-- End Stats -->
+
+
+
+  <!-- Start Contact -->
+  <section class="contact" id="contact">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-lg-12">
+
+        <div class="special-heading">Contact</div>
+        <p>We are born to create</p>
+        <div class="info">
+          <p class="label">Feel free to drop us at :  </p>
+          <a href="mailto:leonagency@gmail.com" class="link" >leonagency@gmail.com</a>
+          <div class="social">
+            Find us on social Network
+            <i class="fa fa-youtube "></i>
+            <i class="fa fa-facebook-f"></i>
+            <i class="fa fa-twitter"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+   
+  </section>
+  
+  <!-- End Contact -->
+</div>
+</main>
+<footer>
+    <div class="bg-light">
+        <div class="container">
+          <div class="row pt-4 pb-3">
+            <div class="col">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item"><a href="#">À propos</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Vie privée</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Conditions d'utilisations</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+</footer>
+
+
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="assets/js/main-script.js" ></script> 
+    <script src="assets/js/main.js" ></script>    
+    
+    <script src="node_modules/chart.js/dist/chart.js"></script>
+   
 
     <!-- Inline the page's JavaScript file. -->
     <script>
       // Manual reload feature.
-      document.querySelector("button").addEventListener("click", () => {
-        window.location.reload();
-      });
+    
 
       // Listen to changes in the network state, reload when online.
       // This handles the case when the device is completely offline.
@@ -64,7 +350,835 @@
       
       }
 
-      window.setTimeout(checkNetworkAndReload, 10000);
+      window.setTimeout(checkNetworkAndReload, 900000);
     </script>
+
+    <script>
+
+
+
+  
+      var db;
+  
+  $(document).ready(function(){
+      
+    $('#staticBackdrop').modal('show');
+    var year = new Date().getFullYear();
+  
+  
+    function BarByMonths($url,$chartId) {
+      
+          
+            var ligness = [];
+            var products = [];
+            var monthstotals = [];
+            var qtemonths = [];
+            var initialarray = [];
+            var filteredarray = [];
+            var finalprods = [];
+            var obj = null;
+            var radarChart;
+            var marksData;
+            var   ctx = document.getElementById($chartId).getContext('2d');
+            console.log($url);
+  
+            var c = 0;     
+            var colors =  [
+              "#2ecc71",
+              "#3498db",
+              "#95a5a6",
+              "#9b59b6",
+              "#f1c40f",
+              "#e74c3c",
+              "#34495e",
+              "#A52A2A",
+              "#FF1493",
+              "#BC8F8F",
+              "crimson",
+              "red",
+              "blue",
+              "magenta",
+              "yellow",
+              "olive"
+            ];
+            var selectedColors = colors.splice(0,$url.length);
+            console.log("selected Colors "+selectedColors);
+         
+            for(var  item of $url){
+              console.log(item.ligne);
+              ligness.push(item.ligne);
+               // console.log(item);
+                initialarray.push(item);
+              
+           
+              }
+              console.log("initial array");
+              console.log(initialarray);
+            
+              var selectMenu = document.getElementById('selectlignesbar');
+              for (var i = 0; i < ligness.length; i++) {
+                var option = document.createElement("option");
+                option.value = ligness[i];
+                option.text = ligness[i];
+                selectMenu.appendChild(option);
+            }
+              console.log(ligness);
+              var value = selectMenu.options[selectMenu.selectedIndex].value;
+              console.log(value); 
+  
+              var selected = value;
+               console.log(initialarray);
+               filteredarray  = initialarray.filter(item => item.ligne == selected);
+               console.log("filtered array");
+               console.log(filteredarray);
+               for(var item of filteredarray){
+               monthstotals.push(item.months);
+               }
+               console.log("months totals");
+               console.log(monthstotals);
+             
+             selectMenu.addEventListener("change", function(e){
+               c = 0;
+              selected = e.target.value;
+              console.log(selected);
+              filteredarray  = initialarray.filter(item => item.ligne == selected);
+              console.log("filtered array");
+             console.log(filteredarray);
+             monthstotals = [];
+             products = [];
+             for(var item of filteredarray){
+              monthstotals.push(item.months);
+              }
+              console.log("months totals");
+              console.log(monthstotals);
+            
+              for( var item of monthstotals){
+                qtemonths = [];
+               for (var i = 0 ; i < item.length ; i++){
+              
+                qtemonths.push(parseInt (item[i].qte));
+               }
+                obj = {
+                backgroundColor: colors[c],
+                data: qtemonths
+              };
+              c++;
+             
+              products.push(obj)
+              }
+              console.log("products of primary obj");
+              console.log(products);
+              
+            finalprods = [];
+         for( var index = 0; index <products.length;index++) {
+             let prodobject = {
+              label: filteredarray[index].produit,
+              backgroundColor: products[index].backgroundColor,
+              fill:true,
+              data: products[index].data
+             };
+            
+          finalprods.push(prodobject);
+         }       
+         console.log("products of final obj");
+            console.log(finalprods);
+  
+              console.log("Bar data loaded .... with event change");
+             
+       
+              marksData = {
+                 labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                 datasets: finalprods
+               };
+               radarChart.destroy();
+               
+                radarChart = new Chart(ctx, {
+                 type: 'bar',
+                 data: marksData,
+                 options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'top',
+                    },
+                    title: {
+                      display: true,
+                      text: 'Bar Chart '+year
+                    }
+                  }
+                },
+             });
+  
+  
+            }); 
+  
+  
+  
+              for( var item of monthstotals){
+                  qtemonths = [];
+                 for (var i = 0 ; i < item.length ; i++){
+                
+                  qtemonths.push(parseInt (item[i].qte));
+                 }
+                  obj = {
+                  backgroundColor: colors[c],
+                  data: qtemonths
+                };
+                c++;
+               
+                products.push(obj)
+                }
+                console.log("products of primary obj");
+                console.log(products);
+                
+            
+  
+              var finalprods = [];
+         for( var index = 0; index <products.length;index++) {
+             let prodobject = {
+              label: filteredarray[index].produit,
+              backgroundColor: products[index].backgroundColor,
+              fill:true,
+              data: products[index].data
+             };
+            
+          finalprods.push(prodobject);
+         }       
+         console.log("products of final obj");
+            console.log(finalprods);
+  
+              console.log("Bar data loaded ....");
+                        
+       
+               marksData = {
+                  labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                  datasets: finalprods
+                };
+                radarChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: marksData,
+                  options: {
+                    responsive: true,
+                    plugins: {
+                      legend: {
+                        position: 'top',
+                      },
+                      title: {
+                        display: true,
+                        text: 'Bar Chart '+year
+                      }
+                    }
+                  },
+              });
+      
+  }
+  
+  
+    function LineByMonths($url,$chartId) {
+   
+          
+            var ligness = [];
+            var products = [];
+            var monthstotals = [];
+            var qtemonths = [];
+            var initialarray = [];
+            var filteredarray = [];
+            var finalprods = [];
+            var obj = null;
+            var radarChart;
+            var marksData;
+            var   ctx = document.getElementById($chartId).getContext('2d');
+            console.log($url);
+  
+            var c = 0;     
+            var colors =  [
+              "#2ecc71",
+              "#3498db",
+              "#95a5a6",
+              "#9b59b6",
+              "#f1c40f",
+              "#e74c3c",
+              "#34495e",
+              "#A52A2A",
+              "#FF1493",
+              "#BC8F8F",
+              "crimson",
+              "red",
+              "blue",
+              "magenta",
+              "yellow",
+              "olive"
+            ];
+            var selectedColors = colors.splice(0,$url.length);
+            console.log("selected Colors "+selectedColors);
+         
+            for(var  item of $url){
+              console.log(item.ligne);
+              ligness.push(item.ligne);
+      
+                initialarray.push(item);
+         
+           
+              }
+              console.log("initial array");
+              console.log(initialarray);
+            
+              var selectMenu = document.getElementById('selectligness');
+              for (var i = 0; i < ligness.length; i++) {
+                var option = document.createElement("option");
+                option.value = ligness[i];
+                option.text = ligness[i];
+                selectMenu.appendChild(option);
+            }
+              console.log(ligness);
+              var value = selectMenu.options[selectMenu.selectedIndex].value;
+              console.log(value); 
+  
+              var selected = value;
+               console.log(initialarray);
+               filteredarray  = initialarray.filter(item => item.ligne == selected);
+               console.log("filtered array");
+               console.log(filteredarray);
+               for(var item of filteredarray){
+               monthstotals.push(item.months);
+               }
+               console.log("months totals");
+               console.log(monthstotals);
+             
+             selectMenu.addEventListener("change", function(e){
+               c = 0;
+              selected = e.target.value;
+              console.log(selected);
+              filteredarray  = initialarray.filter(item => item.ligne == selected);
+              console.log("filtered array");
+             console.log(filteredarray);
+             monthstotals = [];
+             products = [];
+             for(var item of filteredarray){
+              monthstotals.push(item.months);
+              }
+              console.log("months totals");
+              console.log(monthstotals);
+            
+              for( var item of monthstotals){
+                qtemonths = [];
+               for (var i = 0 ; i < item.length ; i++){
+              
+                qtemonths.push(parseInt (item[i].qte));
+               }
+                obj = {
+                backgroundColor: colors[c],
+                data: qtemonths
+              };
+              c++;
+             
+              products.push(obj)
+              }
+              console.log("products of primary obj");
+              console.log(products);
+              
+            finalprods = [];
+         for( var index = 0; index <products.length;index++) {
+             let prodobject = {
+              label: filteredarray[index].produit,
+              backgroundColor: products[index].backgroundColor,
+              fill:true,
+              data: products[index].data
+             };
+            
+          finalprods.push(prodobject);
+         }       
+         console.log("products of final obj");
+            console.log(finalprods);
+  
+              console.log("Line data loaded .... with event change");
+             
+       
+              marksData = {
+                 labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                 datasets: finalprods
+               };
+               radarChart.destroy();
+               
+                radarChart = new Chart(ctx, {
+                 type: 'line',
+                 data: marksData,
+                 options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'top',
+                    },
+                    title: {
+                      display: true,
+                      text: 'Line Chart'
+                    }
+                  }
+                 }
+             });
+  
+  
+    
+              
+            }); 
+  
+  
+  
+              for( var item of monthstotals){
+                  qtemonths = [];
+                 for (var i = 0 ; i < item.length ; i++){
+                
+                  qtemonths.push(parseInt (item[i].qte));
+                 }
+                  obj = {
+                  backgroundColor: colors[c],
+                  data: qtemonths
+                };
+                c++;
+               
+                products.push(obj)
+                }
+                console.log("products of primary obj");
+                console.log(products);
+                
+            
+  
+              var finalprods = [];
+         for( var index = 0; index <products.length;index++) {
+             let prodobject = {
+              label: filteredarray[index].produit,
+              backgroundColor: products[index].backgroundColor,
+              fill:true,
+              data: products[index].data
+             };
+            
+          finalprods.push(prodobject);
+         }       
+         console.log("products of final obj");
+            console.log(finalprods);
+  
+              console.log("Line data loaded ....");
+                        
+       
+               marksData = {
+                  labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                  datasets: finalprods
+                };
+                radarChart = new Chart(ctx, {
+                  type: 'line',
+                  data: marksData,
+                  options: {
+                   responsive: true,
+                   plugins: {
+                     legend: {
+                       position: 'top',
+                     },
+                     title: {
+                       display: true,
+                       text: 'Line Chart '+year
+                     }
+                   }
+                  }
+              });
+      
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    function RadarByMonths($url,$chartId) {
+       
+          
+            var ligness = [];
+            var products = [];
+            var monthstotals = [];
+            var qtemonths = [];
+            var initialarray = [];
+            var filteredarray = [];
+            var finalprods = [];
+            var obj = null;
+            var radarChart;
+            var marksData;
+            var   ctx = document.getElementById($chartId).getContext('2d');
+            console.log($url);
+  
+            var c = 0;     
+            var colors =  [
+              "#2ecc71",
+              "#3498db",
+              "#95a5a6",
+              "#9b59b6",
+              "#f1c40f",
+              "#e74c3c",
+              "#34495e",
+              "#A52A2A",
+              "#FF1493",
+              "#BC8F8F",
+              "crimson",
+              "red",
+              "blue",
+              "magenta",
+              "yellow",
+              "olive"
+            ];
+            var selectedColors = colors.splice(0,$url.length);
+            console.log("selected Colors "+selectedColors);
+         
+            for(var  item of $url){
+              console.log(item.ligne);
+              ligness.push(item.ligne);
+               // console.log(item);
+                initialarray.push(item);
+              }
+              console.log("initial array");
+              console.log(initialarray);
+          
+  
+              var selectMenu = document.getElementById('selectlignes');
+              for (var i = 0; i < ligness.length; i++) {
+                var option = document.createElement("option");
+                option.value = ligness[i];
+                option.text = ligness[i];
+                selectMenu.appendChild(option);
+            }
+              console.log(ligness);
+              var value = selectMenu.options[selectMenu.selectedIndex].value;
+              console.log(value); 
+  
+              var selected = value;
+               console.log(initialarray);
+               filteredarray  = initialarray.filter(item => item.ligne == selected);
+               console.log("filtered array");
+               console.log(filteredarray);
+               for(var item of filteredarray){
+               monthstotals.push(item.months);
+               }
+               console.log("months totals");
+               console.log(monthstotals);
+             
+             selectMenu.addEventListener("change", function(e){
+               c = 0;
+              selected = e.target.value;
+              console.log(selected);
+              filteredarray  = initialarray.filter(item => item.ligne == selected);
+              console.log("filtered array");
+             console.log(filteredarray);
+             monthstotals = [];
+             products = [];
+             for(var item of filteredarray){
+              monthstotals.push(item.months);
+              }
+              console.log("months totals");
+              console.log(monthstotals);
+            
+              for( var item of monthstotals){
+                qtemonths = [];
+               for (var i = 0 ; i < item.length ; i++){
+              
+                qtemonths.push(parseInt (item[i].qte));
+               }
+                obj = {
+                backgroundColor: colors[c],
+                data: qtemonths
+              };
+              c++;
+             
+              products.push(obj)
+              }
+              console.log("products of primary obj");
+              console.log(products);
+              
+            finalprods = [];
+         for( var index = 0; index <products.length;index++) {
+             let prodobject = {
+              label: filteredarray[index].produit,
+              backgroundColor: products[index].backgroundColor,
+              fill:true,
+              data: products[index].data
+             };
+            
+          finalprods.push(prodobject);
+         }       
+         console.log("products of final obj");
+            console.log(finalprods);
+  
+              console.log("Radar data loaded .... with event change");
+             
+       
+              marksData = {
+                 labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                 datasets: finalprods
+               };
+               radarChart.destroy();
+               
+                radarChart = new Chart(ctx, {
+                 type: 'radar',
+                 data: marksData,
+                 options: {
+                  responsive: true,
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: 'Radar Chart'+year
+                    }
+                  }
+                },
+             });
+  
+  
+  
+              
+            }); 
+  
+  
+  
+              for( var item of monthstotals){
+                  qtemonths = [];
+                 for (var i = 0 ; i < item.length ; i++){
+                
+                  qtemonths.push(parseInt (item[i].qte));
+                 }
+                  obj = {
+                  backgroundColor: colors[c],
+                  data: qtemonths
+                };
+                c++;
+               
+                products.push(obj)
+                }
+                console.log("products of primary obj");
+                console.log(products);
+                
+            
+  
+              var finalprods = [];
+         for( var index = 0; index <products.length;index++) {
+             let prodobject = {
+              label: filteredarray[index].produit,
+              backgroundColor: products[index].backgroundColor,
+              fill:true,
+              data: products[index].data
+             };
+            
+          finalprods.push(prodobject);
+         }       
+         console.log("products of final obj");
+            console.log(finalprods);
+  
+              console.log("Radar data loaded ....");
+                        
+       
+               marksData = {
+                  labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
+                  datasets: finalprods
+                };
+                 radarChart = new Chart(ctx, {
+                  type: 'radar',
+                  data: marksData,
+                  options: {
+                    responsive: true,
+                    plugins: {
+                      title: {
+                        display: true,
+                        text: 'Radar Chart '+year
+                      }
+                    }
+                  },
+              });
+      
+          
+  }
+  
+  
+   
+  function Pie($url){
+    
+      total = 0;
+      var lignes = [];
+      var totals = [];
+      var colors =  [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        "#9b59b6",
+        "#f1c40f",
+        "#e74c3c",
+        "#34495e",
+        "#A52A2A",
+        "#FF1493",
+        "#BC8F8F",
+      ];
+      var selectedColors = colors.splice($url.length,colors.length);
+      console.log("selected Colors "+colors);
+  
+        for( item of $url){
+         total += parseInt(item.total);
+        }
+        for( item of $url){
+         lignes.push(item.ligne);
+         }
+         console.log(lignes);
+        for( item of $url){
+          item.total /= total;
+          item.total*=100;
+          item.total= item.total.toFixed(2);
+         }
+         for( item of $url){
+          totals.push(item.total);
+          }
+         for( item of $url){
+          console.log("produit "+item.produit+" Pourcentage  "+item.total);
+         }
+        console.log("Total...."+total);
+        console.log("Pie data loaded ....");
+  
+  
+        var ctx = document.getElementById("myChartOne").getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Pie Chart '+year
+              }
+            }
+          },
+          data: {
+          labels: lignes,
+            datasets: [{
+              backgroundColor: selectedColors,
+              data: totals
+            }]
+          }
+        });
+     
+  }
+  
+  
+
+  
+  function readAll() {
+  
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
+    window.msIndexedDB;
+     
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
+    window.msIDBTransaction;
+    window.IDBKeyRange = window.IDBKeyRange || 
+    window.webkitIDBKeyRange || window.msIDBKeyRange
+  
+  if (!window.indexedDB) {
+    window.alert("Your browser doesn't support a stable version of IndexedDB.");
+    console.log("Your browser doesn't support a stable version of IndexedDB.");
+  }
+  
+  if (window.indexedDB) {
+    console.log("IndexedDB is supported");
+  }
+  else {
+    alert("Indexed DB is not supported!");
+  }
+  
+  // open the database
+  // 1st parameter : Database name. We are using the name 'Appsdb'
+  // 2nd parameter is the version of the database.
+  var request = indexedDB.open('Appsdb', 6);
+  
+  request.onsuccess = function (e) {
+    // e.target.result has the connection to the database
+    db = e.target.result;
+  
+    console.log(db);
+    console.log("DB Opened!");
+    
+    //read object
+   
+    var objectStore = db.transaction("monthscharts").objectStore("monthscharts");
+    var data = [];
+    objectStore.openCursor().onsuccess = function(event) {
+       var cursor = event.target.result;
+
+    
+       
+       if (cursor) {
+          //alert("Name for id " + cursor.key + " is " + cursor.value);
+          console.log("Name for id " + cursor.key + " is " + cursor.value);
+         data.push(cursor.value);
+         cursor.continue();
+        }else{
+
+          console.log("data");
+   
+
+//operations
+
+//Pie($url);
+  RadarByMonths(data,"myChartTwo");
+  LineByMonths(data,"myChartThree");
+  BarByMonths(data,"myChartFour");
+
+
+        }
+
+    };
+   
+      
+  
+  }
+  
+  request.onerror = function (e) {
+    console.log(e);
+  };
+  
+  
+  // this will fire when the version of the database changes
+      // We can only create Object stores in a versionchange transaction.
+      request.onupgradeneeded = function (e) {
+        // e.target.result holds the connection to database
+        db = e.target.result;
+  
+            db.createObjectStore('monthscharts', { keyPath: 'id' });
+  
+    };
+  
+  
+  }
+  
+  
+  
+  
+
+  readAll();
+  
+  
+    });
+
+
+
+</script>    
   </body>
+
 </html>
+
+
+
+
+
+
+
+

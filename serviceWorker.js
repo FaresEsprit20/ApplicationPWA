@@ -12,7 +12,7 @@ const assets = [
   'https://fonts.googleapis.com/css?family=Merriweather:400,900,900i',
   'assets/js/main.js',
   'assets/js/piechart.js',
-  'assets/js/chartsoffline',
+  'assets/js/chartsoffline.js',
   'assets/images/Into/into.jpg',
   'assets/images/Into/intro-sm.jpg',
   'assets/images/logo/logo.jpeg',
@@ -33,7 +33,7 @@ const assets = [
 self.addEventListener('install', (installEvent) => {
   installEvent.waitUntil(
     caches.open(staticDevCoffee).then(cache => {
-      console.log('[Service Worker] Mise en cache globale: app shell et contenu');
+      console.log('[Service Worker] Mise en cache globale: apps shell et contenu');
       cache.addAll(assets);
     })
   )
@@ -51,7 +51,6 @@ self.addEventListener('activate', (evt) => {
         );
       })
     );
-    self.skipWaiting();
 });
 
 
