@@ -364,7 +364,7 @@
       
     $('#staticBackdrop').modal('show');
     var year = new Date().getFullYear();
-  
+     var c =0;
   
     function BarByMonths($url,$chartId) {
       
@@ -379,10 +379,10 @@
             var obj = null;
             var radarChart;
             var marksData;
-            var   ctx = document.getElementById($chartId).getContext('2d');
+            var ctx = document.getElementById($chartId).getContext('2d');
             console.log($url);
   
-            var c = 0;     
+            
             var colors =  [
               "#2ecc71",
               "#3498db",
@@ -406,23 +406,29 @@
          
             for(var  item of $url){
               console.log(item.ligne);
-              ligness.push(item.ligne);
+             
                // console.log(item);
                 initialarray.push(item);
-              
+                ligness.push(item.ligne);
            
               }
+            
+              
               console.log("initial array");
               console.log(initialarray);
             
               var selectMenu = document.getElementById('selectlignesbar');
-              for (var i = 0; i < ligness.length; i++) {
+             
+              var ln =  [...new Set(ligness)];
+              console.log(" ln  " +ln);  
+              for (var i = 0; i < ln.length; i++) {
                 var option = document.createElement("option");
-                option.value = ligness[i];
-                option.text = ligness[i];
+                option.value = ln[i];
+                option.text = ln[i];
                 selectMenu.appendChild(option);
             }
-              console.log(ligness);
+              console.log("ln  "+ln);
+             
               var value = selectMenu.options[selectMenu.selectedIndex].value;
               console.log(value); 
   
@@ -437,8 +443,8 @@
                console.log("months totals");
                console.log(monthstotals);
              
-             selectMenu.addEventListener("change", function(e){
-               c = 0;
+             selectMenu.addEventListener("change", function(e){  c = 0;
+              
               selected = e.target.value;
               console.log(selected);
               filteredarray  = initialarray.filter(item => item.ligne == selected);
@@ -462,7 +468,7 @@
                 backgroundColor: colors[c],
                 data: qtemonths
               };
-              c++;
+              
              
               products.push(obj)
               }
@@ -523,9 +529,8 @@
                   obj = {
                   backgroundColor: colors[c],
                   data: qtemonths
-                };
-                c++;
-               
+                };  
+               c++;
                 products.push(obj)
                 }
                 console.log("products of primary obj");
@@ -590,7 +595,7 @@
             var   ctx = document.getElementById($chartId).getContext('2d');
             console.log($url);
   
-            var c = 0;     
+                 
             var colors =  [
               "#2ecc71",
               "#3498db",
@@ -624,13 +629,17 @@
               console.log(initialarray);
             
               var selectMenu = document.getElementById('selectligness');
-              for (var i = 0; i < ligness.length; i++) {
+                  
+              var ln =  [...new Set(ligness)];
+              console.log(" ln  " +ln);  
+              for (var i = 0; i < ln.length; i++) {
                 var option = document.createElement("option");
-                option.value = ligness[i];
-                option.text = ligness[i];
+                option.value = ln[i];
+                option.text = ln[i];
                 selectMenu.appendChild(option);
             }
-              console.log(ligness);
+              console.log("ln  "+ln);
+             
               var value = selectMenu.options[selectMenu.selectedIndex].value;
               console.log(value); 
   
@@ -645,8 +654,8 @@
                console.log("months totals");
                console.log(monthstotals);
              
-             selectMenu.addEventListener("change", function(e){
-               c = 0;
+             selectMenu.addEventListener("change", function(e){  c = 0;
+               
               selected = e.target.value;
               console.log(selected);
               filteredarray  = initialarray.filter(item => item.ligne == selected);
@@ -733,8 +742,8 @@
                   obj = {
                   backgroundColor: colors[c],
                   data: qtemonths
-                };
-                c++;
+                }; 
+                
                
                 products.push(obj)
                 }
@@ -812,7 +821,7 @@
             var   ctx = document.getElementById($chartId).getContext('2d');
             console.log($url);
   
-            var c = 0;     
+                 
             var colors =  [
               "#2ecc71",
               "#3498db",
@@ -845,13 +854,17 @@
           
   
               var selectMenu = document.getElementById('selectlignes');
-              for (var i = 0; i < ligness.length; i++) {
+               
+              var ln =  [...new Set(ligness)];
+              console.log(" ln  " +ln);  
+              for (var i = 0; i < ln.length; i++) {
                 var option = document.createElement("option");
-                option.value = ligness[i];
-                option.text = ligness[i];
+                option.value = ln[i];
+                option.text = ln[i];
                 selectMenu.appendChild(option);
             }
-              console.log(ligness);
+              console.log("ln  "+ln);
+             
               var value = selectMenu.options[selectMenu.selectedIndex].value;
               console.log(value); 
   
@@ -866,8 +879,8 @@
                console.log("months totals");
                console.log(monthstotals);
              
-             selectMenu.addEventListener("change", function(e){
-               c = 0;
+             selectMenu.addEventListener("change", function(e){  c = 0;
+               
               selected = e.target.value;
               console.log(selected);
               filteredarray  = initialarray.filter(item => item.ligne == selected);
@@ -891,7 +904,7 @@
                 backgroundColor: colors[c],
                 data: qtemonths
               };
-              c++;
+              
              
               products.push(obj)
               }
@@ -951,8 +964,8 @@
                   obj = {
                   backgroundColor: colors[c],
                   data: qtemonths
-                };
-                c++;
+                }; 
+                
                
                 products.push(obj)
                 }
@@ -1158,10 +1171,7 @@
   
   
   }
-  
-  
-  
-  
+
 
   readAll();
   
