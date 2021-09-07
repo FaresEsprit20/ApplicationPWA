@@ -900,7 +900,9 @@ request.onsuccess = function (e) {
   console.log("DB Opened!");
   
   //add object
- 
+  if(readAll() == false){
+    clearData();
+  }
   for(var item of $arr){
     add(item);
   }
@@ -912,7 +914,19 @@ request.onerror = function (e) {
   console.log(e);
 };
 
+function clearData() {
+  // ouvre une transaction de lecture / écriture  prête pour le nettoyage
+  var transaction = db.transaction(["monthscharts"], "readwrite");
+  var objectStore = transaction.objectStore("monthscharts");
 
+  // Vide le magasin d'objet
+  var objectStoreRequest = objectStore.clear();
+
+  objectStoreRequest.onsuccess = function(event) {
+  // rapporte le succès du nettoyage
+  console.log("ok");
+  };
+};
 // this will fire when the version of the database changes
     // We can only create Object stores in a versionchange transaction.
     request.onupgradeneeded = function (e) {
@@ -933,11 +947,85 @@ RadarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","
 LineByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
 BarByMonths("http://127.0.0.1/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
 //readAll();
-/*
-Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
+
+/*Pie("http://10.0.2.2/Stage/server/Api/getProductsStatsByType.php");
 RadarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartTwo");
 LineByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
-BarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");
-*/
+BarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");*/
+
+function readAll() {
+  
+  window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
+  window.msIndexedDB;
+   
+  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
+  window.msIDBTransaction;
+  window.IDBKeyRange = window.IDBKeyRange || 
+  window.webkitIDBKeyRange || window.msIDBKeyRange
+
+if (!window.indexedDB) {
+  window.alert("Your browser doesn't support a stable version of IndexedDB.");
+  console.log("Your browser doesn't support a stable version of IndexedDB.");
+}
+
+if (window.indexedDB) {
+  console.log("IndexedDB is supported");
+}
+else {
+  alert("Indexed DB is not supported!");
+}
+
+// open the database
+// 1st parameter : Database name. We are using the name 'Appsdb'
+// 2nd parameter is the version of the database.
+var request = indexedDB.open('Appsdb', 6);
+
+request.onsuccess = function (e) {
+  // e.target.result has the connection to the database
+  db = e.target.result;
+
+  console.log(db);
+  console.log("DB Opened!");
+  
+  //read object
+ 
+  var objectStore = db.transaction("monthscharts").objectStore("monthscharts");
+  
+  objectStore.openCursor().onsuccess = function(event) {
+     var cursor = event.target.result;
+     cursor.continue();
+     
+     if (cursor) {
+       let today = (new Date()).toDateString("YYYY-MM-DD");
+       if (cursor.value.date != today){
+        return false;
+       }
+     } else {
+        alert("No more entries!");
+     }
+  };
+
+
+}
+
+request.onerror = function (e) {
+  console.log(e);
+};
+
+
+// this will fire when the version of the database changes
+    // We can only create Object stores in a versionchange transaction.
+    request.onupgradeneeded = function (e) {
+      // e.target.result holds the connection to database
+      db = e.target.result;
+
+          db.createObjectStore('monthscharts', { keyPath: 'id' });
+
+  };
+
+
+}
+
+
 
   });
