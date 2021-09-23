@@ -797,12 +797,12 @@ function add($item)
 }
 
 
-function getSingle($item) 
+function getSingle() 
 {
  
   var req = db.transaction(['monthscharts'], 'readwrite')
     .objectStore('monthscharts')
-    .get($item);
+    .get("ids");
 
     
   req.onsuccess = function (event) {
@@ -842,7 +842,7 @@ else {
 // open the database
 // 1st parameter : Database name. We are using the name 'Appsdb'
 // 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 9);
+var request = indexedDB.open('Appsdb', 10);
 
 request.onsuccess = function (e) {
   // e.target.result has the connection to the database
@@ -860,7 +860,7 @@ request.onsuccess = function (e) {
   }
 
   //read single object
-  //getSingle(0);
+  getSingle();
   
 
 }
@@ -876,7 +876,7 @@ request.onerror = function (e) {
       // e.target.result holds the connection to database
       db = e.target.result;
 
-          db.createObjectStore('monthscharts', { autoIncrement:true });
+          db.createObjectStore('monthscharts', { keyPath: 'ids', autoIncrement:true });
 
   };
 
