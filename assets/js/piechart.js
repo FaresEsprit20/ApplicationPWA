@@ -777,6 +777,7 @@ function Pie($url){
 });
 }
 
+//CRUD INDEXED DB
 
 function add($item) 
 {
@@ -795,74 +796,25 @@ function add($item)
   }
 }
 
-function readAll() {
 
-  window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
-  window.msIndexedDB;
-   
-  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
-  window.msIDBTransaction;
-  window.IDBKeyRange = window.IDBKeyRange || 
-  window.webkitIDBKeyRange || window.msIDBKeyRange
-
-if (!window.indexedDB) {
-  window.alert("Your browser doesn't support a stable version of IndexedDB.");
-  console.log("Your browser doesn't support a stable version of IndexedDB.");
-}
-
-if (window.indexedDB) {
-  console.log("IndexedDB is supported");
-}
-else {
-  alert("Indexed DB is not supported!");
-}
-
-// open the database
-// 1st parameter : Database name. We are using the name 'Appsdb'
-// 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 6);
-
-request.onsuccess = function (e) {
-  // e.target.result has the connection to the database
-  db = e.target.result;
-
-  console.log(db);
-  console.log("DB Opened!");
-  
-  //read object
+function getSingle($item) 
+{
  
-  var objectStore = db.transaction("monthscharts").objectStore("monthscharts");
-  
-  objectStore.openCursor().onsuccess = function(event) {
-     var cursor = event.target.result;
-     console.log("cursor"+cursor.value);
-     cursor.continue();
-     
-     if (cursor) {
-        alert("Name for id " + cursor.key + " is " + cursor.value.id);
-     } else {
-        alert("No more entries!");
-     }
-  };
+  var req = db.transaction(['monthscharts'], 'readwrite')
+    .objectStore('monthscharts')
+    .get($item);
 
-}
-
-request.onerror = function (e) {
-  console.log(e);
-};
-
-
-// this will fire when the version of the database changes
-    // We can only create Object stores in a versionchange transaction.
-    request.onupgradeneeded = function (e) {
-      // e.target.result holds the connection to database
-      db = e.target.result;
-
-          db.createObjectStore('monthscharts', { keyPath: 'id' });
+    
+  req.onsuccess = function (event) {
+    console.log('The data has been read successfully');
+    var obj = event.target.result;
+    console.log("the read object IS  !  "+obj);
 
   };
 
-
+  req.onerror = function (event) {
+    console.log('The data has been read failed'+event);
+  }
 }
 
 function testDbCompatibility($arr) {
@@ -890,7 +842,7 @@ else {
 // open the database
 // 1st parameter : Database name. We are using the name 'Appsdb'
 // 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 6);
+var request = indexedDB.open('Appsdb', 9);
 
 request.onsuccess = function (e) {
   // e.target.result has the connection to the database
@@ -899,14 +851,17 @@ request.onsuccess = function (e) {
   console.log(db);
   console.log("DB Opened!");
   
-  //add object
-  if(readAll() == false){
-    clearData();
-  }
+  //deleteAllObjects
+ // clearData();
+
+ //add object
   for(var item of $arr){
     add(item);
   }
 
+  //read single object
+  //getSingle(0);
+  
 
 }
 
@@ -914,26 +869,14 @@ request.onerror = function (e) {
   console.log(e);
 };
 
-function clearData() {
-  // ouvre une transaction de lecture / écriture  prête pour le nettoyage
-  var transaction = db.transaction(["monthscharts"], "readwrite");
-  var objectStore = transaction.objectStore("monthscharts");
 
-  // Vide le magasin d'objet
-  var objectStoreRequest = objectStore.clear();
-
-  objectStoreRequest.onsuccess = function(event) {
-  // rapporte le succès du nettoyage
-  console.log("ok");
-  };
-};
 // this will fire when the version of the database changes
     // We can only create Object stores in a versionchange transaction.
     request.onupgradeneeded = function (e) {
       // e.target.result holds the connection to database
       db = e.target.result;
 
-          db.createObjectStore('monthscharts', { keyPath: 'id' });
+          db.createObjectStore('monthscharts', { autoIncrement:true });
 
   };
 
@@ -953,79 +896,22 @@ RadarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","m
 LineByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartThree");
 BarByMonths("http://10.0.2.2/Stage/server/Api/getProductsStatsByMonths.php","myChartFour");*/
 
-function readAll() {
-  
-  window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || 
-  window.msIndexedDB;
-   
-  window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || 
-  window.msIDBTransaction;
-  window.IDBKeyRange = window.IDBKeyRange || 
-  window.webkitIDBKeyRange || window.msIDBKeyRange
 
-if (!window.indexedDB) {
-  window.alert("Your browser doesn't support a stable version of IndexedDB.");
-  console.log("Your browser doesn't support a stable version of IndexedDB.");
-}
 
-if (window.indexedDB) {
-  console.log("IndexedDB is supported");
-}
-else {
-  alert("Indexed DB is not supported!");
-}
 
-// open the database
-// 1st parameter : Database name. We are using the name 'Appsdb'
-// 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 6);
+function clearData() {
+  // ouvre une transaction de lecture / écriture  prête pour le nettoyage
+  var transaction = db.transaction(["monthscharts"], "readwrite");
+  var objectStore = transaction.objectStore("monthscharts");
 
-request.onsuccess = function (e) {
-  // e.target.result has the connection to the database
-  db = e.target.result;
+  // Vide le magasin d'objet
+  var objectStoreRequest = objectStore.clear();
 
-  console.log(db);
-  console.log("DB Opened!");
-  
-  //read object
- 
-  var objectStore = db.transaction("monthscharts").objectStore("monthscharts");
-  
-  objectStore.openCursor().onsuccess = function(event) {
-     var cursor = event.target.result;
-     cursor.continue();
-     
-     if (cursor) {
-       let today = (new Date()).toDateString("YYYY-MM-DD");
-       if (cursor.value.date != today){
-        return false;
-       }
-     } else {
-        alert("No more entries!");
-     }
+  objectStoreRequest.onsuccess = function(event) {
+  // rapporte le succès du nettoyage
+  console.log("ok");
+  console.log("data cleared !");
   };
-
-
-}
-
-request.onerror = function (e) {
-  console.log(e);
 };
-
-
-// this will fire when the version of the database changes
-    // We can only create Object stores in a versionchange transaction.
-    request.onupgradeneeded = function (e) {
-      // e.target.result holds the connection to database
-      db = e.target.result;
-
-          db.createObjectStore('monthscharts', { keyPath: 'id' });
-
-  };
-
-
-}
-
-
 
   });
