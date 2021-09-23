@@ -781,7 +781,12 @@ function Pie($url){
 
 function add($item) 
 {
- 
+  var string = {
+    date: $item.date,
+    heure: $item.heure,
+    dateheure: $item.date+' '+$item.heure
+  }
+localStorage.setItem("obj",JSON.stringify(string));
   var req = db.transaction(['monthscharts'], 'readwrite')
     .objectStore('monthscharts')
     .put($item);
@@ -796,26 +801,6 @@ function add($item)
   }
 }
 
-
-function getSingle() 
-{
- 
-  var req = db.transaction(['monthscharts'], 'readwrite')
-    .objectStore('monthscharts')
-    .get("ids");
-
-    
-  req.onsuccess = function (event) {
-    console.log('The data has been read successfully');
-    var obj = event.target.result;
-    console.log("the read object IS  !  "+obj);
-
-  };
-
-  req.onerror = function (event) {
-    console.log('The data has been read failed'+event);
-  }
-}
 
 function testDbCompatibility($arr) {
 
@@ -859,9 +844,30 @@ request.onsuccess = function (e) {
     add(item);
   }
 
-  //read single object
-  getSingle();
-  
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var time = today.getHours() + ":" + today.getMinutes();
+  var datetime = date+" "+time;
+  console.log(" date time  "+datetime);
+
+  var test = localStorage.getItem("obj");
+  var old = JSON.parse(test);
+  console.log("test "+old);
+
+  if(old.dateheure < datetime){
+    console.log(old.dateheure);
+    console.log("this date is older then today");
+    clearData();
+    for(var item of $arr){
+      add(item);
+    }
+  }else{
+    console.log(old.dateheure);
+    console.log("this date is greater then today");
+    for(var item of $arr){
+      add(item);
+    }
+  }
 
 }
 
