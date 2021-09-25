@@ -745,7 +745,7 @@
   // open the database
   // 1st parameter : Database name. We are using the name 'Appsdb'
   // 2nd parameter is the version of the database.
-  var request = indexedDB.open('Appsdb', 6);
+  var request = indexedDB.open('Appsdb', 11);
   
   request.onsuccess = function (e) {
     // e.target.result has the connection to the database
@@ -761,12 +761,13 @@
     objectStore.openCursor().onsuccess = function(event) {
        var cursor = event.target.result;
        console.log("cursor"+cursor.value);
-       cursor.continue();
+       
        
        if (cursor) {
-          alert("Name for id " + cursor.key + " is " + cursor.value.id);
+          console.log("Name for id " + cursor.key + " is " + cursor.value.id);
+          cursor.continue();
        } else {
-          alert("No more entries!");
+          console.log("No more entries!");
        }
     };
   
@@ -778,7 +779,8 @@
   }
   
   request.onerror = function (e) {
-    console.log(e);
+    //console.log(e);
+    console.log("failed to read data from indexeddb");
   };
   
   

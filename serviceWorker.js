@@ -1,4 +1,4 @@
-const staticDevCoffee = 'stage-cache-app';
+const staticDevCoffee = 'stage-cache-appz';
 const dynamicDevCoffee = 'dynamic-stage-cache-app';
 const assets = [
   '/',

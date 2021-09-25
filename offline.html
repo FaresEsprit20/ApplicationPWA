@@ -1110,7 +1110,7 @@
   // open the database
   // 1st parameter : Database name. We are using the name 'Appsdb'
   // 2nd parameter is the version of the database.
-  var request = indexedDB.open('Appsdb', 6);
+  var request = indexedDB.open('Appsdb', 12);
   
   request.onsuccess = function (e) {
     // e.target.result has the connection to the database
@@ -1122,7 +1122,9 @@
     //read object
    
     var objectStore = db.transaction("monthscharts").objectStore("monthscharts");
+    var objectStore2 = db.transaction("dailycharts").objectStore("dailycharts");
     var data = [];
+    var datatwo = [];
     objectStore.openCursor().onsuccess = function(event) {
        var cursor = event.target.result;
 
@@ -1150,6 +1152,42 @@
 
     };
    
+
+    objectStore2.openCursor().onsuccess = function(event) {
+       var cursor = event.target.result;
+
+        
+       if (cursor) {
+          //alert("Name for id " + cursor.key + " is " + cursor.value);
+          console.log("Name for id " + cursor.key + " is " + cursor.value);
+         datatwo.push(cursor.value);
+         cursor.continue();
+        }else{
+
+          console.log("data");
+   
+
+//operations
+
+var jsonData = data;
+          console.log(jsonData);
+          for (var index = 0; index < jsonData.length; index++) {
+            var res ='<tr>';
+            res+='<td>'+jsonData[index].id+'</td>';
+            res+='<td>'+jsonData[index].ligne+'</td>';
+            res+='<td>'+jsonData[index].produit+'</td>';
+            res+='<td>'+jsonData[index].date+'</td>';
+            res+='<td>'+jsonData[index].heure+'</td>';
+            res+='<td>'+jsonData[index].qte+'</td>';
+            res+='</tr>';
+            $("#tbodydaily").append(res); 
+            console.log(res)  ;         
+        }
+
+
+        }
+
+    };
       
   
   }
