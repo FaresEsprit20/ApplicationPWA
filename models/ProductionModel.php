@@ -100,7 +100,7 @@ class ProductionModel {
     $date_arr = explode("-", $today);  
     $year = $date_arr[0];
     $stmt = $this->conn->prepare("SELECT * FROM production where date = ? ");
-    $stmt->execute([$year]);
+    $stmt->execute([$today]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($result) ;
 
