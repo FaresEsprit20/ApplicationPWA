@@ -84,7 +84,7 @@ else {
 // open the database
 // 1st parameter : Database name. We are using the name 'Appsdb'
 // 2nd parameter is the version of the database.
-var request = indexedDB.open('Appsdb', 12);
+var request = indexedDB.open('Appsdb', 16);
 
 request.onsuccess = function (e) {
   // e.target.result has the connection to the database
@@ -106,7 +106,7 @@ request.onsuccess = function (e) {
   var time = today.getHours() + ":" + today.getMinutes();
   var datetime = date+" "+time;
   console.log(" date time  "+datetime);
-
+  clearData();
   var test = localStorage.getItem("obj");
   var old = JSON.parse(test);
   console.log("test "+old);

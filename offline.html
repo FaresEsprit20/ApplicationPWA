@@ -368,8 +368,7 @@
   
     function BarByMonths($url,$chartId) {
       
-          
-            var ligness = [];
+      var ligness = [];
             var products = [];
             var monthstotals = [];
             var qtemonths = [];
@@ -379,10 +378,10 @@
             var obj = null;
             var radarChart;
             var marksData;
-            var ctx = document.getElementById($chartId).getContext('2d');
+            var   ctx = document.getElementById($chartId).getContext('2d');
             console.log($url);
   
-            
+                 
             var colors =  [
               "#2ecc71",
               "#3498db",
@@ -406,19 +405,17 @@
          
             for(var  item of $url){
               console.log(item.ligne);
-             
-               // console.log(item);
+              ligness.push(item.ligne);
+      
                 initialarray.push(item);
-                ligness.push(item.ligne);
+         
            
               }
-            
-              
               console.log("initial array");
               console.log(initialarray);
             
-              var selectMenu = document.getElementById('selectlignesbar');
-             
+              var selectMenu = document.getElementById('selectligness');
+                  
               var ln =  [...new Set(ligness)];
               console.log(" ln  " +ln);  
               for (var i = 0; i < ln.length; i++) {
@@ -444,7 +441,7 @@
                console.log(monthstotals);
              
              selectMenu.addEventListener("change", function(e){  c = 0;
-              
+               
               selected = e.target.value;
               console.log(selected);
               filteredarray  = initialarray.filter(item => item.ligne == selected);
@@ -468,7 +465,7 @@
                 backgroundColor: colors[c],
                 data: qtemonths
               };
-              
+              c++;
              
               products.push(obj)
               }
@@ -489,7 +486,7 @@
          console.log("products of final obj");
             console.log(finalprods);
   
-              console.log("Bar data loaded .... with event change");
+              console.log("Line data loaded .... with event change");
              
        
               marksData = {
@@ -499,7 +496,7 @@
                radarChart.destroy();
                
                 radarChart = new Chart(ctx, {
-                 type: 'bar',
+                 type: 'line',
                  data: marksData,
                  options: {
                   responsive: true,
@@ -509,13 +506,15 @@
                     },
                     title: {
                       display: true,
-                      text: 'Bar Chart '+year
+                      text: 'Line Chart'
                     }
                   }
-                },
+                 }
              });
   
   
+    
+              
             }); 
   
   
@@ -529,8 +528,9 @@
                   obj = {
                   backgroundColor: colors[c],
                   data: qtemonths
-                };  
-               c++;
+                }; 
+                
+               
                 products.push(obj)
                 }
                 console.log("products of primary obj");
@@ -554,8 +554,7 @@
   
               console.log("Bar data loaded ....");
                         
-       
-               marksData = {
+              marksData = {
                   labels: ["Janvier","Février","Mars","Avril","Mai","Juin","Juilliet","Aout","Séptembre","Octobre","Novembre","Décembre"],
                   datasets: finalprods
                 };
@@ -575,6 +574,8 @@
                     }
                   },
               });
+      
+
       
   }
   
@@ -1110,7 +1111,7 @@
   // open the database
   // 1st parameter : Database name. We are using the name 'Appsdb'
   // 2nd parameter is the version of the database.
-  var request = indexedDB.open('Appsdb', 12);
+  var request = indexedDB.open('Appsdb', 16);
   
   request.onsuccess = function (e) {
     // e.target.result has the connection to the database
@@ -1204,6 +1205,7 @@ var jsonData = data;
         db = e.target.result;
   
             db.createObjectStore('monthscharts', { keyPath: 'id' });
+            db.createObjectStore('dailycharts', { keyPath: 'id' });
   
     };
   
